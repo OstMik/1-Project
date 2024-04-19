@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sustainability Blog</title>
+</head>
+<body>
+  <h1>Welcome to the Sustainability Blog!</h1>
+  <p>This blog is dedicated to sharing information and ideas about sustainability. Check back often for new posts!</p>
+  <h2>Latest Posts</h2>
+  <article>
+    <h3>Post Title 1</h3>
+    <p>Posted on Date 1</p>
+    <p>This is the content of the first blog post. It can be as long or as short as you want, and can include text, images, links, and more.</p>
+  </article>
+  <article>
+    <h3>Post Title 2</h3>
+    <p>Posted on Date 2</p>
+    <p>This is the content of the second blog post. It can be as long or as short as you want, and can include text, images, links, and more.</p>
+  </article>
+  <!-- Add more articles here as you create new posts -->
+</body>
+</html>
