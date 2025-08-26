@@ -9,83 +9,95 @@
 <style>
   :root{
     --ink:#0e0e0e; --muted:#5f6b76; --line:#e9edf2;
-    --accent:#5D2DE6; --accent-2:#0a6cc2;
-    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.08);
-    --maxw:1100px;
+    --accent:#5D2DE6; --accent2:#0a6cc2;
+    --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.10);
+    --maxw:1120px;
   }
   *{box-sizing:border-box}
   html,body{
     margin:0; color:var(--ink); font-family:Inter,system-ui,Arial,sans-serif;
-    /* Лёгкий узор фона: мягкий градиент + прозрачный паттерн */
+    /* мягкий фон + узор */
     background:
-      radial-gradient(1200px 800px at 20% -10%, #fff7f0 0,#f7f0ff 60%, #ffffff 100%),
-      repeating-conic-gradient(from 0deg at 50% 50%, rgba(0,0,0,.015) 0 10deg, rgba(0,0,0,0) 10deg 20deg);
+      radial-gradient(1400px 900px at 15% -10%, #fff7f0 0,#f1f6ff 40%, #ffffff 80%),
+      repeating-conic-gradient(from 0deg at 40% 30%, rgba(0,0,0,.02) 0 12deg, transparent 12deg 24deg);
     background-attachment: fixed;
   }
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:var(--maxw);margin:0 auto;padding:20px}
-  header{position:sticky;top:0;backdrop-filter:blur(8px);background:rgba(255,255,255,.65);border-bottom:1px solid var(--line);z-index:10}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+  header{position:sticky;top:0;backdrop-filter:blur(10px);background:rgba(255,255,255,.65);border-bottom:1px solid var(--line);z-index:20}
   .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
   .brand{display:flex;gap:12px;align-items:center;font-weight:800}
   .logo{width:36px;height:36px;border-radius:10px;background:
     radial-gradient(120px 120px at 20% 20%, #9E81F0, #7241FF 60%),
     linear-gradient(45deg,#6bdcff,#e6d8ff);box-shadow:var(--shadow);animation:float 6s ease-in-out infinite}
   .navlinks a{margin-left:18px;color:#39424a;opacity:.9}
-  .btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:700;transition:transform .1s ease, box-shadow .2s}
+  .btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:700;transition:.15s transform, .2s box-shadow}
   .btn:hover{transform:translateY(-2px)}
-  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;box-shadow:var(--shadow)}
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:var(--shadow)}
   .btn-ghost{border:1px solid var(--line);background:#fff}
 
-  /* HERO */
-  .hero{padding:60px 0 30px;border-bottom:1px solid var(--line)}
-  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+  /* HERO — текст + портрет + декор */
+  .hero{padding:68px 0 40px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center}
   .kicker{color:var(--accent);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
-  h1{font-size:clamp(28px,4vw,46px);line-height:1.1;margin:.25em 0}
-  .lead{color:var(--muted);font-size:1.08rem;max-width:60ch}
-  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow)}
-  .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-  .badge{padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#55606b;font-size:.9rem}
-
-  /* PHOTO + мини-галерея */
-  .media{display:grid;grid-template-columns:180px 1fr;gap:18px;align-items:center;margin-top:14px}
-  .avatar{
-    width:180px;height:180px;border-radius:50%;overflow:hidden;border:6px solid #fff;box-shadow:var(--shadow);
-    transform:translateZ(0);transition:transform .3s ease;animation:pop .6s ease .1s both
+  h1{font-size:clamp(30px,4.3vw,52px);line-height:1.08;margin:.3em 0}
+  .lead{color:var(--muted);font-size:1.08rem;max-width:62ch}
+  .hero-card{position:relative}
+  .blob{
+    position:absolute;inset:-40px -30px auto auto;width:360px;height:360px;filter:blur(40px);opacity:.45;z-index:-1;
+    background:radial-gradient(closest-side, #8fb7ff 0%, transparent 70%),
+               radial-gradient(closest-side, #b79bff 0%, transparent 70%),
+               radial-gradient(closest-side, #8ffff0 0%, transparent 70%);
+    mix-blend-mode:multiply;border-radius:50%;
+    animation:blob 12s ease-in-out infinite alternate;
   }
-  .avatar:hover{transform:scale(1.03)}
-  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-  .gallery .ph{
-    position:relative; border-radius:14px; overflow:hidden; border:1px solid var(--line); background:#fff; box-shadow:var(--shadow);
-    transform:translateY(10px); opacity:0; transition:transform .6s, opacity .6s;
+  .portrait{
+    width:260px;height:260px;border-radius:50%;overflow:hidden;border:8px solid #fff;box-shadow:var(--shadow);margin:0 auto;
+    transform:translateZ(0);transition:transform .3s ease
   }
-  .gallery .ph img{width:100%;height:140px;object-fit:cover;display:block}
-  .reveal{opacity:1!important;transform:translateY(0)!important}
+  .portrait:hover{transform:scale(1.02)}
+  .hero-card .tag{
+    position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
+    background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;box-shadow:var(--shadow);font-weight:700
+  }
 
-  /* SECTIONS */
-  section{padding:48px 0;border-bottom:1px solid var(--line)}
-  h2{font-size:clamp(22px,3vw,32px);margin:0 0 8px}
-  .grid{display:grid;gap:16px}
+  /* SECTION base */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 12px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .grid{display:grid;gap:18px}
+
+  /* MISSION — изображение слева, текст справа */
+  .mission{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+  .img-frame{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);
+             transform:translateY(16px) scale(.98);opacity:0;transition:.8s transform,.8s opacity}
+  .img-frame img{width:100%;height:100%;object-fit:cover;display:block}
+  .reveal{transform:translateY(0) scale(1);opacity:1}
+  .muted{color:var(--muted)}
+
+  /* COLLAB — крупный фон справа, текст слева */
+  .collab{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch;border-radius:22px;overflow:hidden}
+  .collab .text{padding:28px}
+  .collab .visual{position:relative;min-height:360px}
+  .collab .visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,.35), rgba(0,0,0,.15));}
+  .collab .text h3{margin:.4rem 0}
+  .collab .text p{color:var(--muted)}
+  .pill{display:inline-block;margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-weight:700}
+
+  /* SERVICES компактно */
   .grid-3{grid-template-columns:repeat(3,1fr)}
-  .grid-2{grid-template-columns:repeat(2,1fr)}
-  .service h3{margin:.4rem 0}
+  .service{padding:18px}
+  .service h3{margin:.2rem 0}
   .service p{color:var(--muted)}
-  .step{position:relative;padding-left:50px}
-  .step::before{content:attr(data-n);position:absolute;left:0;top:0;width:36px;height:36px;border-radius:10px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#fff;display:grid;place-items:center;font-weight:800;box-shadow:var(--shadow)}
-
-  /* CONTACT */
-  .form input,.form textarea{width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:#fff;margin-bottom:10px}
-  .legal{color:#7a8792;font-size:.92rem}
 
   footer{padding:28px 0;color:#6b757f}
   .split{display:flex;flex-wrap:wrap;gap:14px}
   .split>*{flex:1 1 280px}
 
-  @media (max-width:980px){.hero-grid{grid-template-columns:1fr}}
-  @media (max-width:740px){.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}.media{grid-template-columns:1fr}}
-  /* Анимации */
+  @media (max-width:980px){.hero-grid,.mission,.collab{grid-template-columns:1fr}.collab{border-radius:18px}}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-  @keyframes pop{0%{transform:scale(.9);opacity:0}100%{transform:scale(1);opacity:1}}
+  @keyframes blob{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-20px,10px) scale(1.08)}}
 </style>
 </head>
 <body>
@@ -94,8 +106,8 @@
     <a class="brand" href="#top"><div class="logo" aria-hidden="true"></div> Mikhail Ostanin</a>
     <nav class="navlinks" aria-label="Main">
       <a href="#services">Services</a>
-      <a href="#approche">Méthode</a>
-      <a href="#a-propos">À propos</a>
+      <a href="#mission">Mission</a>
+      <a href="#collab">Collaboration</a>
       <a href="#contact" class="btn btn-primary">Devis</a>
     </nav>
   </div>
@@ -107,44 +119,59 @@
     <div class="wrap hero-grid">
       <div>
         <div class="kicker">RSE • Bilans carbone • Reporting</div>
-        <h1>Messagerie claire, résultats mesurables pour votre transition durable</h1>
-        <p class="lead">J’accompagne les PME et établissements d’enseignement : <em>bilans GES</em>, <em>reporting</em>, <em>ateliers</em>, <em>conformité</em> — avec une approche orientée données et livrables concrets.</p>
-
-        <!-- Блок: фото + 2 картинки -->
-        <div class="media">
-          <div class="avatar" title="Photo — Mikhail">
-            <!-- ЗАМЕНИ me.jpg на своё фото -->
-            <img src="me.jpg" alt="Mikhail Ostanin" width="180" height="180" loading="lazy"
-                 style="width:100%;height:100%;object-fit:cover;">
-          </div>
-          <div class="gallery">
-            <!-- ЗАМЕНИ файлами sustain-1.jpg и sustain-2.jpg -->
-            <figure class="ph"><img src="sustain-1.jpg" alt="Panneaux solaires sur toit" loading="lazy"></figure>
-            <figure class="ph"><img src="sustain-2.jpg" alt="Mobilité douce et piste cyclable" loading="lazy"></figure>
-          </div>
-        </div>
-
-        <div class="badges" style="margin-top:18px">
-          <span class="badge">ESCP Business School</span>
-          <span class="badge">Master Développement durable</span>
-          <span class="badge">FR / EN / RU</span>
-        </div>
+        <h1>Résultats mesurables, pédagogie claire — votre transition durable, sans blabla</h1>
+        <p class="lead">J’accompagne PME & écoles sur les <em>bilans GES</em>, <em>reporting</em>, <em>ateliers</em> et la <em>conformité</em>. Approche orientée données, livrables prêts à l’emploi et plan d’actions priorisé.</p>
         <p style="margin-top:16px">
           <a class="btn btn-primary" href="#contact">Parler de votre projet</a>
           <a class="btn btn-ghost" href="#services" style="margin-left:8px">Voir les services</a>
         </p>
       </div>
 
-      <aside class="card">
-        <h3 style="margin:0 0 .3rem 0">Offre express</h3>
-        <ul style="margin:0 0 10px 18px;color:#53606b">
-          <li>Bilan carbone « starter » (3–6 semaines)</li>
-          <li>Tableaux &amp; indicateurs de reporting</li>
-          <li>Atelier d’acculturation climat (1h30)</li>
-          <li>Plan d’actions priorisé à 12 mois</li>
-        </ul>
-        <small class="legal">Adapté PME & écoles • Facturation transparente.</small>
+      <aside class="hero-card">
+        <div class="blob" aria-hidden="true"></div>
+        <figure class="portrait">
+          <!-- ЗАМЕНИ на свой файл портрета -->
+          <img src="me.jpg" alt="Portrait — Mikhail Ostanin" width="260" height="260" style="width:100%;height:100%;object-fit:cover">
+        </figure>
+        <div class="tag">Consultant RSE • FR | EN | RU</div>
       </aside>
+    </div>
+  </section>
+
+  <!-- MISSION (plant.jpg слева) -->
+  <section id="mission">
+    <div class="wrap mission">
+      <figure class="img-frame will-reveal">
+        <img src="plant.jpg" alt="Jeune plante — symbole de croissance durable" loading="lazy">
+      </figure>
+      <div>
+        <h2>Mission</h2>
+        <p class="muted">Une transition durable commence par des gestes concrets et des décisions fondées sur les données. Je structure votre démarche : périmètre, collecte, facteurs d’émission, arbitrages, feuille de route 12–36 mois.</p>
+        <ul class="muted">
+          <li>Bilans carbone (Scopes 1–2–3)</li>
+          <li>Reporting & indicateurs clés</li>
+          <li>Ateliers d’acculturation</li>
+          <li>Gouvernance & suivi</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLAB (фон с workshop.jpg справа + текст слева) -->
+  <section id="collab">
+    <div class="wrap">
+      <div class="collab card">
+        <div class="text">
+          <h2>Collaboration</h2>
+          <h3>Construisons ensemble vos projets RSE</h3>
+          <p>Co-design avec vos équipes : ateliers rapides pour prioriser les actions à plus fort impact/coût. Restitutions visuelles, templates réutilisables, calendrier clair.</p>
+          <a class="pill" href="#contact">Découvrir les modalités</a>
+        </div>
+        <div class="visual">
+          <img src="workshop.jpg" alt="Groupe en atelier — collaboration sur la durabilité" loading="lazy">
+          <div class="overlay" aria-hidden="true"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -152,55 +179,10 @@
   <section id="services">
     <div class="wrap">
       <h2>Services</h2>
-      <p style="color:var(--muted)">Prestations modulaires — diagnostics rapides, livrables prêts à l’emploi.</p>
       <div class="grid grid-3">
-        <article class="card service"><h3>Bilans carbone (BEGES)</h3><p>Périmètres 1–2–3, collecte de données, facteurs d’émission, rapport & plan d’actions.</p></article>
-        <article class="card service"><h3>Reporting RSE</h3><p>Indicateurs clés, tableaux de bord, matérialité, traçabilité sources.</p></article>
-        <article class="card service"><h3>Ateliers & sensibilisation</h3><p>Climat, déchets, mobilité, alimentation durable — supports fournis.</p></article>
-        <article class="card service"><h3>Feuille de route</h3><p>Priorisation, trajectoire 12–36 mois, gouvernance, suivi.</p></article>
-        <article class="card service"><h3>Données & automatisation</h3><p>Modèles de collecte, Excel/SQL, templates de rapports.</p></article>
-        <article class="card service"><h3>Communication RSE</h3><p>Storytelling, pages web, posts LinkedIn, infographies.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <!-- APPROCHE -->
-  <section id="approche">
-    <div class="wrap">
-      <h2>Méthode</h2>
-      <div class="grid grid-2">
-        <div class="card step" data-n="1"><h3>Diagnostic</h3><p class="legal">Objectifs, périmètre, données disponibles, parties prenantes.</p></div>
-        <div class="card step" data-n="2"><h3>Mesures</h3><p class="legal">Procédures de collecte, qualité des données, hypothèses.</p></div>
-        <div class="card step" data-n="3"><h3>Décisions</h3><p class="legal">Restitution claire, arbitrages, ROI environnemental.</p></div>
-        <div class="card step" data-n="4"><h3>Déploiement</h3><p class="legal">Plan 12 mois, rôles, jalons, reporting périodique.</p></div>
-      </div>
-      <div class="card" style="margin-top:18px;text-align:center">
-        <strong>Besoin d’un devis en 48h ?</strong><br>
-        Envoyez le périmètre, l’effectif et une facture énergie type — je propose un format et un budget.
-      </div>
-    </div>
-  </section>
-
-  <!-- A PROPOS -->
-  <section id="a-propos">
-    <div class="wrap split">
-      <div class="card">
-        <h2>À propos</h2>
-        <p>Je suis <strong>Mikhail Ostanin</strong>, consultant RSE basé au Mans. Expérience à l’<em>ESCP Business School</em>, diplômé d’un <strong>Master en Management & Développement durable</strong>. Approche : rigueur des données + pédagogie + efficacité.</p>
-        <ul>
-          <li>Langues : FR / EN / RU</li>
-          <li>Compétences : bilans GES, reporting, SQL/Excel, communication</li>
-          <li>Secteurs : éducation, services, PME industrielles & tertiaires</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>Références (exemples)</h2>
-        <ul>
-          <li>Prototype de Sustainability Report pour grande école</li>
-          <li>Tableaux de suivi climat / mobilité / déchets</li>
-          <li>Ateliers de sensibilisation & contenus de communication</li>
-        </ul>
-        <p class="legal">Portefeuille détaillé sur demande.</p>
+        <article class="card service"><h3>Bilans carbone</h3><p class="muted">Périmètres 1–2–3, calculs, rapport & plan d’actions.</p></article>
+        <article class="card service"><h3>Reporting RSE</h3><p class="muted">KPI, tableaux de bord, matérialité, traçabilité.</p></article>
+        <article class="card service"><h3>Ateliers</h3><p class="muted">Climat, déchets, mobilité, alimentation durable.</p></article>
       </div>
     </div>
   </section>
@@ -209,21 +191,20 @@
   <section id="contact">
     <div class="wrap">
       <h2>Contact</h2>
-      <div class="grid grid-2">
-        <form class="card form" onsubmit="sendMail(event)">
-          <input id="nom" name="nom" placeholder="Nom" required>
-          <input id="email" name="email" type="email" placeholder="E-mail" required>
-          <textarea id="message" name="message" rows="6" placeholder="Votre besoin (périmètre, délais, contraintes)…" required></textarea>
+      <div class="grid" style="grid-template-columns:1fr 1fr">
+        <form class="card" onsubmit="sendMail(event)" style="padding:18px">
+          <input id="nom" name="nom" placeholder="Nom" required style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);margin-bottom:10px;background:#fff">
+          <input id="email" name="email" type="email" placeholder="E-mail" required style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);margin-bottom:10px;background:#fff">
+          <textarea id="message" name="message" rows="6" placeholder="Votre besoin (périmètre, délais, contraintes)…" required style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);margin-bottom:10px;background:#fff"></textarea>
           <button class="btn btn-primary" type="submit">Envoyer</button>
-          <p id="ok" class="legal" style="display:none;margin-top:8px">Merci ! Un e-mail est prêt dans votre client.</p>
-          <p class="legal">ou écrivez : <a href="mailto:ostanin.mikhail@gmail.com">ostanin.mikhail@gmail.com</a></p>
+          <p id="ok" class="muted" style="display:none;margin-top:8px">Merci ! Un e-mail est prêt dans votre client.</p>
         </form>
-        <div class="card">
+        <div class="card" style="padding:18px">
           <h3>Coordonnées</h3>
           <p><strong>Mikhail Ostanin</strong><br>Consultant RSE & transition durable<br>Le Mans, France</p>
           <p>Tél : <a href="tel:+33765292978">+33 7 65 29 29 78</a><br>
              E-mail : <a href="mailto:ostanin.mikhail@gmail.com">ostanin.mikhail@gmail.com</a></p>
-          <p class="legal">Mentions : micro-entreprise (activité libérale). APE provisoire : 7022Z. SIREN : à venir.</p>
+          <p class="muted">Mentions : micro-entreprise (activité libérale). APE provisoire : 7022Z. SIREN : à venir.</p>
         </div>
       </div>
     </div>
@@ -233,15 +214,15 @@
 <footer>
   <div class="wrap split" style="align-items:center">
     <p>© <span id="year"></span> Mikhail Ostanin — Tous droits réservés.</p>
-    <p class="legal">RGPD : pas de cookies tiers. Les messages passent par votre client mail.</p>
+    <p class="muted">RGPD : pas de cookies tiers. Les messages passent par votre client mail.</p>
   </div>
 </footer>
 
 <script>
-  // Année dynamique
+  // année dynamique
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mailto — без бэкенда
+  // mailto
   function sendMail(e){
     e.preventDefault();
     const nom = encodeURIComponent(document.getElementById('nom').value.trim());
@@ -253,14 +234,9 @@
     document.getElementById('ok').style.display = 'block';
   }
 
-  // Анимация появления карточек галереи при скролле
-  const obs = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting) e.target.classList.add('reveal');
-    });
-  }, {threshold: .2});
-  document.querySelectorAll('.gallery .ph').forEach(el=>obs.observe(el));
+  // reveal анимации
+  const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('reveal') }), {threshold:.22});
+  document.querySelectorAll('.will-reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
-
