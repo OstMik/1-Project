@@ -36,6 +36,10 @@ a{color:inherit;text-decoration:none}
 .mo-btn:hover{transform:translateY(-2px)}
 .mo-btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:var(--shadow)}
 .mo-btn-ghost{border:1px solid var(--line);background:#fff}
+.mo-btn:focus-visible, .mo-pill:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px #fff,0 0 0 4px var(--accent);
+}
 
 /* Hero */
 .mo-hero{padding:68px 0 40px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
