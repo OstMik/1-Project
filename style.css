@@ -6,6 +6,7 @@
 }
 
 /* Base */
+html{scroll-behavior:smooth;}
 html,body{
   background:
     radial-gradient(1400px 900px at 15% -10%, #fff7f0 0,#f1f6ff 40%, #ffffff 80%),
