@@ -28,7 +28,8 @@ a{color:inherit;text-decoration:none}
 .mo-logo{width:36px;height:36px;border-radius:10px;background:
   radial-gradient(120px 120px at 20% 20%, #9E81F0, #7241FF 60%), linear-gradient(45deg,#6bdcff,#e6d8ff);
   box-shadow:var(--shadow);animation:mo-float 6s ease-in-out infinite}
-.mo-links a{margin-left:18px;color:#39424a;opacity:.9}
+.mo-links a{margin-left:18px;color:#39424a;opacity:.9;transition:color .2s ease,opacity .2s ease}
+.mo-links a:hover,.mo-links a:focus-visible{color:var(--accent);text-decoration:underline;opacity:1}
 
 /* Buttons */
 .mo-btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:700;transition:.15s transform, .2s box-shadow}
