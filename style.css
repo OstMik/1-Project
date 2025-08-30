@@ -106,6 +106,12 @@ textarea.mo-input{min-height:140px;resize:vertical}
 .mo-card .mo-input{margin-bottom:12px}
 .mo-card button.mo-btn{margin-top:6px}
 
+#mo-ok {
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 /* Mission (no animations) */
 .mission-section {
   --bg: #0b1114;
