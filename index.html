@@ -144,23 +144,21 @@
     <div class="mo-wrap">
       <h2 id="contact-title">Contact</h2>
       <div class="mo-grid mo-grid-2">
-        <form class="mo-card" onsubmit="moSendMail(event)">
-          <div style="padding:18px;border:0">
-            <label class="visually-hidden" for="mo-nom">Nom</label>
-            <input id="mo-nom" name="nom" placeholder="Nom" required class="mo-input">
+        <form class="mo-card mo-card-padding" onsubmit="moSendMail(event)">
+          <label class="visually-hidden" for="mo-nom">Nom</label>
+          <input id="mo-nom" name="nom" placeholder="Nom" required class="mo-input">
 
-            <label class="visually-hidden" for="mo-email">E-mail</label>
-            <input id="mo-email" name="email" type="email" placeholder="E-mail" required class="mo-input">
+          <label class="visually-hidden" for="mo-email">E-mail</label>
+          <input id="mo-email" name="email" type="email" placeholder="E-mail" required class="mo-input">
 
-            <label class="visually-hidden" for="mo-msg">Message</label>
-            <textarea id="mo-msg" name="message" rows="6" placeholder="Votre besoin (périmètre, délais, contraintes)…" required class="mo-input"></textarea>
+          <label class="visually-hidden" for="mo-msg">Message</label>
+          <textarea id="mo-msg" name="message" rows="6" placeholder="Votre besoin (périmètre, délais, contraintes)…" required class="mo-input"></textarea>
 
-            <button class="mo-btn mo-btn-primary" type="submit">Envoyer</button>
-            <p id="mo-ok" class="mo-muted" hidden>Merci ! Un e-mail est prêt dans votre client.</p>
-          </div>
+          <button class="mo-btn mo-btn-primary" type="submit">Envoyer</button>
+          <p id="mo-ok" class="mo-muted" hidden>Merci ! Un e-mail est prêt dans votre client.</p>
         </form>
 
-        <div class="mo-card" style="padding:18px">
+        <div class="mo-card mo-card-padding">
           <h3>Coordonnées</h3>
           <p><strong>Mikhail Ostanin</strong><br>Consultant RSE & transition durable<br>Le Mans, France</p>
           <p>E-mail : <a href="mailto:contact@ostanin-rse.fr">contact@ostanin-rse.fr</a></p>
