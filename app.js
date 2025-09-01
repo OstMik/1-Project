@@ -13,6 +13,49 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
   revealEls.forEach(el => observer.observe(el));
+
+  const serviceCards = document.querySelectorAll('.mo-service');
+  serviceCards.forEach(card => {
+    const btn = card.querySelector('.service-toggle');
+    const panel = card.querySelector('.service-panel');
+    if (!btn || !panel) return;
+
+    const open = () => {
+      panel.hidden = false;
+      btn.setAttribute('aria-expanded', 'true');
+      card.classList.add('is-open');
+    };
+    const close = () => {
+      panel.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+      card.classList.remove('is-open');
+    };
+
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      expanded ? close() : open();
+      delete card.dataset.hover;
+    });
+    btn.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+    card.addEventListener('mouseenter', () => {
+      if (btn.getAttribute('aria-expanded') === 'false') {
+        open();
+        card.dataset.hover = '1';
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      if (card.dataset.hover) {
+        close();
+        delete card.dataset.hover;
+      }
+    });
+  });
 });
 
 // 2) Mailto без бэкенда
