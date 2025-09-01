@@ -100,8 +100,6 @@ a{color:inherit;text-decoration:none}
 
 /* Sections */
 .mo-service{padding:clamp(16px,4vw,24px)}
-.mo-service h3{margin:0}
-.mo-service p{color:var(--muted)}
 
 .service-toggle{
   display:block;
@@ -347,28 +345,6 @@ textarea.mo-input{min-height:140px;resize:vertical}
     aspect-ratio: 16 / 10;
   }
 }
-body, button, input, select, textarea {
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-/* === Заголовки === */
-h1 {
-  line-height: 1.2;
-}
-
-h2 {
-  line-height: 1.3;
-}
-
-h3 {
-  line-height: 1.3;
-}
-
-/* === Абзацы и стандартный текст === */
-p, li {
-  line-height: 1.6;
-}
 
 /* === Мелкий текст, например для muted === */
 .mo-muted {
@@ -440,4 +416,40 @@ p, li {
 @media (min-width: 880px){
   .mission-wrap{ grid-template-columns: .9fr 1.1fr; }
 }
+/* Пусть все форм-контролы наследуют шрифт темы/контейнера */
+input, textarea, select, button { font: inherit; }
 
+/* 1) Крупный и стабильный заголовок секции */
+#services-title{
+  font-size: clamp(26px, 3.2vw, 36px);
+  line-height: 1.15;
+  margin: 0 0 var(--space-s);
+}
+
+/* 2) Заголовки карточек услуг */
+.mo-service h2{
+  margin: 0 0 6px;
+  font-size: clamp(18px, 2.1vw, 22px); /* можно поднять верхнюю границу до 24px */
+}
+
+/* Кнопка внутри h2 наследует типографику заголовка */
+.mo-service h2 .service-toggle{
+  font: inherit;
+  line-height: inherit;
+  font-weight: 600; /* легкий акцент, можно убрать */
+}
+
+/* 3) Текст внутри раскрывашки (слегка спокойнее, но не меньше заголовка) */
+.service-panel{
+  font-size: 0.95rem; /* при желании 1rem */
+}
+
+/* (опционально) ховер по кнопке-заголовку — визуальная обратная связь */
+.mo-service h2 .service-toggle:hover{
+  text-decoration: underline;
+}
+.service-toggle:focus {
+  outline: none; /* убираем стандартный контур */
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent); /* мягкий подсвет */
+  border-radius: 6px;
+}
