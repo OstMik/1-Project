@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   revealEls.forEach(el => observer.observe(el));
 });
 
-// 2) Mailto без бэкенда
+// 2) Отправка формы через бэкенд
 function moSendMail(e) {
   e.preventDefault();
 
@@ -27,15 +27,29 @@ function moSendMail(e) {
   const email = (emailEl?.value || '').trim();
   const msg = (msgEl?.value || '').trim();
 
-  const subject = `[Site RSE] Message de ${nom || 'Client'}`;
-  const body =
-    `Nom: ${nom}\n` +
-    `Email: ${email}\n\n` +
-    `${msg}`;
-
-  const href = `mailto:contact@ostanin-rse.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = href;
-
-  const ok = document.getElementById('mo-ok');
-  if (ok) ok.hidden = false;
+  fetch('/api/contact', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ nom, email, msg })
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error('Network response was not ok');
+      return res.json();
+    })
+    .then(() => {
+      const ok = document.getElementById('mo-ok');
+      if (ok) {
+        ok.textContent = 'Merci, votre message a été envoyé.';
+        ok.hidden = false;
+        ok.style.color = '';
+      }
+    })
+    .catch(() => {
+      const ok = document.getElementById('mo-ok');
+      if (ok) {
+        ok.textContent = "Une erreur s'est produite. Veuillez réessayer.";
+        ok.hidden = false;
+        ok.style.color = 'red';
+      }
+    });
 }
