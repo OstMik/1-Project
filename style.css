@@ -419,4 +419,82 @@ p, li {
   font-size: 0.9rem; /* около 14px */
   color: var(--muted);
 }
+/* ==== Компактные вертикальные отступы секций (адаптивно) ==== */
+:root{
+  /* Можно подкручивать эти 2 числа под вкус */
+  --section-y-min: 28px;  /* минимум на мобильных */
+  --section-y-max: 44px;  /* максимум на десктопе */
+}
+
+/* Базовый отступ для всех секций */
+.mo-section{
+  padding: clamp(var(--section-y-min), 6vw, var(--section-y-max)) 0;
+}
+
+/* Чуть компактнее контейнер по вертикали (горизонтальные отступы как были) */
+.mo-wrap{
+  padding: var(--space-m) var(--space-l);
+}
+
+/* Герой делаем ещё плотнее сверху и снизу */
+.mo-hero{
+  padding: clamp(16px, 4vw, 28px) 0 clamp(24px, 5vw, 36px);
+}
+
+/* Заголовки секций — меньше «воздуха» снизу */
+.mo-section h2{
+  margin: 0 0 var(--space-xs);
+}
+
+/* Сетка — немного меньше промежутки между карточками/колонками */
+.mo-grid{ gap: var(--space-s); }
+
+/* Индивидуальные твики при желании (можно удалить/оставить) */
+#services.mo-section{ padding: clamp(24px, 5vw, 36px) 0; }
+#contact.mo-section{  padding: clamp(24px, 5vw, 36px) 0; }
+
+/* На очень больших экранах не раздуваем слишком сильно */
+@media (min-width: 1400px){
+  :root{
+    --section-y-max: 40px;
+  }
+}
+/* ==== Mission: компактный вариант ==== */
+
+/* Меньше внутренних отступов у всей секции */
+.mission-section{
+  /* было: padding: clamp(32px, 6vw, 80px) ... */
+  padding-block: clamp(16px, 4vw, 36px);
+  padding-inline: clamp(12px, 4vw, 40px);
+}
+
+/* Меньше зазоров между колонками/элементами */
+.mission-wrap{
+  gap: clamp(12px, 2.5vw, 20px);
+}
+
+/* Титул и лид — меньше «воздуха» */
+.mission-title{ margin: 4px 0 8px; }
+.mission-lead{  margin: 0 0 var(--space-s); }
+
+/* Список — компактнее */
+.mission-list{ margin: 8px 0 12px; gap: 8px; }
+.mission-list li{ padding: var(--space-xs) var(--space-m); }
+
+/* Картинка: ограничим высоту и обрежем излишки, чтобы секция не растягивалась */
+.mission-figure{
+  max-height: 420px;       /* при необходимости уменьшай до 360px */
+  overflow: clip;          /* скрываем лишнее */
+}
+.mission-figure img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* аккуратно обрезает без искажений */
+  aspect-ratio: auto;      /* снимаем принудительное 3/4 из раннего блока */
+}
+
+/* На десктопе немного смещаем пропорцию колонок, чтобы картинка была уже */
+@media (min-width: 880px){
+  .mission-wrap{ grid-template-columns: .9fr 1.1fr; }
+}
 
