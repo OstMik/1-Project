@@ -1,9 +1,11 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const rateLimit = require('express-rate-limit');
+const path = require('path');
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname)));
 
 // Basic rate limiting to mitigate spam
 app.use(
