@@ -4,6 +4,7 @@
   --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.10);
   --maxw:1120px;
   --space-xs:8px; --space-s:12px; --space-m:18px; --space-l:24px;
+  --section-y-min:28px; --section-y-max:44px;
 }
 
 /* Base */
@@ -416,11 +417,6 @@ p, li {
   color: var(--muted);
 }
 /* ==== Компактные вертикальные отступы секций (адаптивно) ==== */
-:root{
-  /* Можно подкручивать эти 2 числа под вкус */
-  --section-y-min: 28px;  /* минимум на мобильных */
-  --section-y-max: 44px;  /* максимум на десктопе */
-}
 
 /* Базовый отступ для всех секций */
 .mo-section{
@@ -451,7 +447,7 @@ p, li {
 
 /* На очень больших экранах не раздуваем слишком сильно */
 @media (min-width: 1400px){
-  :root{
+  body{
     --section-y-max: 40px;
   }
 }
