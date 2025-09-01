@@ -41,6 +41,12 @@ app.post('/api/contact', async (req, res) => {
     return res.status(400).json({ error: 'Missing fields' });
   }
 
+  // Simple e-mail format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email format' });
+  }
+
   const mail = {
     from: process.env.SMTP_FROM || 'no-reply@ostanin-rse.fr',
     to: 'contact@ostanin-rse.fr',
