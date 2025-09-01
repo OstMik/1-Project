@@ -331,3 +331,32 @@ textarea.mo-input{min-height:140px;resize:vertical}
   }
   .mission-figure, .mission-content, .mission-list li { box-shadow: 0 10px 24px rgba(16, 46, 39, .08); }
 }
+/* Размер и обрезка коллаб-изображения */
+.mo-c-visual {
+  position: relative;
+  min-height: 360px;                 /* базовая высота на десктопе */
+  aspect-ratio: 16 / 11;             /* помогает держать пропорцию при растяжке */
+  overflow: hidden;
+}
+
+.mo-c-visual img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                  /* равномерная обрезка без искажений */
+  display: block;
+}
+
+/* Текстовая колонка чтобы дышала */
+.mo-c-text { padding: clamp(20px, 3vw, 32px); }
+
+/* На мобильных делаем разумную высоту */
+@media (max-width: 980px) {
+  .mo-collab { grid-template-columns: 1fr; }
+  .mo-c-visual {
+    min-height: 240px;
+    aspect-ratio: 16 / 10;
+  }
+}
+
