@@ -3,6 +3,7 @@
   --accent:#5D2DE6; --accent2:#0a6cc2;
   --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.10);
   --maxw:1120px;
+  --space-xs:8px; --space-s:12px; --space-m:18px; --space-l:24px;
 }
 
 /* Base */
@@ -34,20 +35,20 @@ a{color:inherit;text-decoration:none}
 }
 
 /* Layout helpers */
-.mo-wrap{max-width:var(--maxw);margin:0 auto;padding:22px}
+.mo-wrap{max-width:var(--maxw);margin:0 auto;padding:var(--space-l)}
 .mo-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
 .mo-card:hover{box-shadow:0 12px 34px rgba(0,0,0,.14);transform:scale(1.02)}
-.mo-card-pad{padding:18px}
-.mo-grid{display:grid;gap:18px}
+.mo-card-pad{padding:var(--space-m)}
+.mo-grid{display:grid;gap:var(--space-m)}
 .mo-grid-3{grid-template-columns:repeat(3,1fr)}
 
 /* Nav */
 .mo-nav{position:sticky;top:0;backdrop-filter:blur(10px);background:rgba(255,255,255,.65);border-bottom:1px solid var(--line);z-index:20;display:flex;align-items:center;justify-content:space-between}
-.mo-brand{display:flex;gap:12px;align-items:center;font-weight:800}
+.mo-brand{display:flex;gap:var(--space-s);align-items:center;font-weight:800}
 .mo-logo{width:36px;height:36px;border-radius:10px;background:
   radial-gradient(120px 120px at 20% 20%, #9E81F0, #7241FF 60%), linear-gradient(45deg,#6bdcff,#e6d8ff);
   box-shadow:var(--shadow);animation:mo-float 6s ease-in-out infinite}
-.mo-links a{margin-left:18px;color:#39424a;opacity:.9;transition:color .2s ease,opacity .2s ease}
+.mo-links a{margin-left:var(--space-m);color:#39424a;opacity:.9;transition:color .2s ease,opacity .2s ease}
 .mo-links a:hover,.mo-links a:focus-visible{color:var(--accent);text-decoration:underline;opacity:1}
 
 /* Buttons */
@@ -55,7 +56,7 @@ a{color:inherit;text-decoration:none}
   display:inline-flex;
   align-items:center;
   text-decoration:none;
-  padding:12px 18px;
+  padding:var(--space-s) var(--space-m);
   border-radius:999px;
   font-weight:700;
   background:var(--accent);
@@ -76,7 +77,7 @@ a{color:inherit;text-decoration:none}
 /* === Fix hero top spacing === */
 .home .wp-site-blocks{padding-top:0}
 .home .wp-site-blocks>*:first-child{margin-top:0}
-.mo-hero{padding:24px 0 40px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.mo-hero{padding:var(--space-l) 0 40px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
 .mo-hero .mo-wrap{padding-top:0}
 
 /* === Align hero grid content vertically === */
@@ -86,7 +87,7 @@ a{color:inherit;text-decoration:none}
 .mo-lead{color:var(--muted);font-size:1.08rem;max-width:62ch}
 
 /* === CTA buttons in one line === */
-.mo-cta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.mo-cta{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-top:16px}
 
 /* === Remove bottom gap under hero portrait === */
 .mo-portrait img{display:block}
@@ -102,7 +103,7 @@ a{color:inherit;text-decoration:none}
 
 /* Sections */
 .mo-section{padding:56px 0;border-bottom:1px solid var(--line)}
-.mo-section h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 12px}
+.mo-section h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 var(--space-s)}
 .mo-service{padding:clamp(16px,4vw,24px)}
 .mo-service h3{margin:0;font-size:clamp(18px,2.6vw,22px)}
 .mo-service p{color:var(--muted)}
@@ -131,7 +132,7 @@ a{color:inherit;text-decoration:none}
 .mo-service.is-open .service-panel{
   max-height:600px;
   opacity:1;
-  margin-top:12px;
+  margin-top:var(--space-s);
 }
 .service-panel ul{
   margin:0;
@@ -146,7 +147,7 @@ a{color:inherit;text-decoration:none}
 .mo-c-visual{position:relative;min-height:360px}
 .mo-c-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .mo-overlay{position:absolute;inset:0;background:linear-gradient(90deg, rgba(0,0,0,.35), rgba(0,0,0,.15))}
-.mo-pill{display:inline-block;margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 12px;font-weight:700}
+.mo-pill{display:inline-block;margin-top:10px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:var(--space-xs) var(--space-s);font-weight:700}
 
 /* Footer */
 .mo-footer{padding:28px 0;color:#6b757f}
@@ -157,14 +158,14 @@ a{color:inherit;text-decoration:none}
 .mo-grid-2{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:18px;
+  gap:var(--space-m);
 }
 .mo-input{
   display:block;
   width:100%;
-  padding:12px 14px;
+  padding:var(--space-s) 14px;
   border:1px solid var(--line);
-  border-radius:12px;
+  border-radius:var(--space-s);
   background:#fff;
   color:var(--ink);
   font:inherit;
@@ -179,7 +180,7 @@ a{color:inherit;text-decoration:none}
   background:#fff;
 }
 textarea.mo-input{min-height:140px;resize:vertical}
-.mo-card .mo-input{margin-bottom:12px}
+.mo-card .mo-input{margin-bottom:var(--space-s)}
 .mo-card button.mo-btn{margin-top:6px}
 
 #mo-ok {
@@ -257,7 +258,7 @@ textarea.mo-input{min-height:140px;resize:vertical}
   color: var(--muted);
   font-size: clamp(16px, 1.6vw, 18px);
   line-height: 1.6;
-  margin: 0 0 18px;
+  margin: 0 0 var(--space-m);
 }
 
 /* === Правка внутренних отступов списка в блоке Mission === */
@@ -272,8 +273,8 @@ textarea.mo-input{min-height:140px;resize:vertical}
 .mission-list li {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
+  gap: var(--space-s);
+  padding: var(--space-s) 16px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: rgba(255,255,255,.02);
