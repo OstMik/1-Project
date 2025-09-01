@@ -2,6 +2,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById('mo-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  const revealEls = document.querySelectorAll('.mo-reveal');
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => observer.observe(el));
 });
 
 // 2) Mailto без бэкенда
