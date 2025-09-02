@@ -39,8 +39,6 @@ a{color:inherit;text-decoration:none}
 .mo-card-pad{padding:var(--space-m)}
 .mo-grid{display:grid;gap:var(--grid-gap)}
 .mo-grid-3{grid-template-columns:repeat(3,1fr)}
-.services-masonry{column-count:3;column-gap:var(--grid-gap)}
-.services-masonry .mo-service{break-inside:avoid}
 
 /* Nav */
 .mo-nav{position:sticky;top:0;backdrop-filter:blur(10px);background:rgba(255,255,255,.65);border-bottom:1px solid var(--line);z-index:20;display:flex;align-items:center;justify-content:space-between}
@@ -445,13 +443,156 @@ input, textarea, select, button { font: inherit; }
 .service-panel{
   font-size: 0.95rem; /* при желании 1rem */
 }
+/* === Services — финальный CSS (без равнения высот) === */
 
-/* (опционально) ховер по кнопке-заголовку — визуальная обратная связь */
-.mo-service h2 .service-toggle:hover{
-  text-decoration: underline;
+/* Контейнер: flex вместо grid, центрирование рядов */
+#services .mo-grid.mo-grid-3{
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--grid-gap);
+  align-items: flex-start;   /* не растягивать карточки по высоте строки */
+  justify-content: center;   /* центрируем ряды */
 }
-.service-toggle:focus {
-  outline: none; /* убираем стандартный контур */
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent); /* мягкий подсвет */
+
+/* Колонки: 3 → 2 → 1 */
+#services .mo-grid.mo-grid-3 > .mo-service{
+  flex: 0 1 calc((100% - 2 * var(--grid-gap)) / 3);
+  align-self: flex-start;
+  box-sizing: border-box;
+}
+@media (max-width: 992px){
+  #services .mo-grid.mo-grid-3 > .mo-service{ flex-basis: calc((100% - 1 * var(--grid-gap)) / 2); }
+}
+@media (max-width: 680px){
+  #services .mo-grid.mo-grid-3 > .mo-service{ flex-basis: 100%; }
+}
+
+/* Карточка: кликабельный вид */
+#services .mo-service{
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+#services .mo-service:hover,
+#services .mo-service:focus-within{
+  background: color-mix(in oklab, #fff 85%, var(--accent) 6%);
+  box-shadow: 0 8px 26px rgba(0,0,0,.08);
+  border-color: color-mix(in oklab, var(--line) 70%, var(--accent) 30%);
+}
+
+/* Заголовок-кнопка */
+#services { --title-lh: 1.4; }
+#services .mo-service h2{ margin: 0 0 6px; }
+
+#services .mo-service .service-toggle{
+  display: block;
+  position: relative;      /* для стрелки */
+  padding-right: 24px;     /* место под стрелку */
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  line-height: var(--title-lh);
+  white-space: normal;
+  word-break: break-word;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color .2s ease, transform .15s ease, max-height .25s ease, min-height .25s ease;
+}
+#services .mo-service .service-toggle:hover,
+#services .mo-service .service-toggle:focus-visible{ color: var(--accent2); }
+#services .mo-service .service-toggle:focus{
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
   border-radius: 6px;
+}
+
+/* Стрелка (не влияет на высоту) */
+#services .mo-service .service-toggle::after{
+  content: "▾";
+  position: absolute;
+  right: 0;
+  top: 0.1em;
+  transition: transform .2s ease;
+  opacity: .85;
+}
+#services .mo-service.is-open .service-toggle::after{ transform: rotate(-180deg); }
+
+/* Высота заголовка: закрыто = 2 строки, открыто = 6 строк (опционально) */
+#services .mo-service:not(.is-open) .service-toggle{
+  min-height: calc(2 * var(--title-lh) * 1em);
+  max-height: calc(2 * var(--title-lh) * 1em);
+}
+#services .mo-service.is-open .service-toggle{
+  min-height: calc(6 * var(--title-lh) * 1em);
+  max-height: calc(6 * var(--title-lh) * 1em);
+}
+
+/* Панель с текстом (анимация высоты/прозрачности; visibility управляет JS через hidden) */
+#services .service-panel{
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height .3s ease, opacity .2s ease, margin-top .2s ease;
+}
+#services .mo-service.is-open .service-panel{
+  margin-top: var(--space-s);
+  opacity: 1;
+}
+/* Убираем дефолтную рамку и даём аккуратный кастомный фокус */
+#services .service-toggle {
+  outline: none !important;
+  box-shadow: none !important;
+}
+/* Заголовок сервиса как цветная кнопка */
+#services .mo-service .service-toggle {
+  display: block;
+  position: relative;
+  padding: 8px 12px;           /* отступы как у кнопки */
+  width: 100%;
+  text-align: left;
+  background: var(--accent);   /* фон как у кнопки */
+  border: none;
+  color: #fff;                 /* белый текст */
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.4;
+  border-radius: 8px;          /* скругления как у кнопок */
+  cursor: pointer;
+  transition: background-color .2s ease, transform .15s ease;
+}
+
+#services .mo-service .service-toggle:hover,
+#services .mo-service .service-toggle:focus-visible {
+  background: var(--accent2);  /* фон при hover/focus */
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Стрелка */
+#services .mo-service .service-toggle::after {
+  content: "▾";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform .2s ease;
+  opacity: .9;
+}
+
+#services .mo-service.is-open .service-toggle::after {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+/* Высота: 2 строки в закрытом, 6 строк в открытом состоянии */
+#services .mo-service:not(.is-open) .service-toggle {
+  min-height: calc(2 * 1.4em + 16px); /* текст + паддинги */
+  max-height: calc(2 * 1.4em + 16px);
+}
+
+#services .mo-service.is-open .service-toggle {
+  min-height: calc(6 * 1.4em + 16px);
+  max-height: calc(6 * 1.4em + 16px);
 }
