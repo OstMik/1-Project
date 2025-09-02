@@ -1,84 +1,84 @@
-// 1) Год в футере
 document.addEventListener('DOMContentLoaded', () => {
+  /* ===== 1) Год в футере ===== */
   const yearEl = document.getElementById('mo-year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
+  /* ===== 2) Reveal-анимация ===== */
   const revealEls = document.querySelectorAll('.mo-reveal');
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  revealEls.forEach(el => observer.observe(el));
+  if (revealEls.length) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  }
 
-  const serviceCards = document.querySelectorAll('.mo-service');
-  serviceCards.forEach(card => {
-    const btn = card.querySelector('.service-toggle');
-    const panel = card.querySelector('.service-panel');
-    if (!btn || !panel) return;
+  /* ===== 3) Services: аккордеон (без равнения высот) ===== */
+  const toggles = document.querySelectorAll('#services .service-toggle');
+
+  toggles.forEach((btn) => {
+    if (!btn.hasAttribute('type')) btn.setAttribute('type', 'button');
+
+    const card  = btn.closest('.mo-service');
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (!card || !panel) return;
+
+    // Начальное состояние: закрыто
+    btn.setAttribute('aria-expanded', 'false');
+    panel.hidden = true;
+    panel.style.maxHeight = '0px';
+    panel.style.opacity = '0';
 
     const open = () => {
-      panel.hidden = false;
-      btn.setAttribute('aria-expanded', 'true');
-      card.classList.add('is-open');
-    };
-    const close = () => {
-      panel.hidden = true;
-      btn.setAttribute('aria-expanded', 'false');
-      card.classList.remove('is-open');
+      panel.hidden = false;                  // включаем для расчёта высоты
+      requestAnimationFrame(() => {
+        card.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        panel.style.opacity = '1';
+      });
     };
 
-    btn.addEventListener('click', e => {
+    const close = () => {
+      card.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = '0px';
+      panel.style.opacity = '0';
+      const onEnd = (e) => {
+        if (e.propertyName === 'max-height') {
+          panel.hidden = true;               // прячем из таб-цикла после схлопывания
+          panel.removeEventListener('transitionend', onEnd);
+        }
+      };
+      panel.addEventListener('transitionend', onEnd);
+    };
+
+    // Клик: один тап/клик = действие
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       expanded ? close() : open();
-      delete card.dataset.hover;
     });
-    btn.addEventListener('keydown', e => {
+
+    // Клавиатура: Enter/Space
+    btn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         btn.click();
       }
     });
-    card.addEventListener('mouseenter', () => {
-      if (btn.getAttribute('aria-expanded') === 'false') {
-        open();
-        card.dataset.hover = '1';
+
+    // Если контент внутри панели изменился — подстроить высоту
+    const ro = new ResizeObserver(() => {
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
       }
     });
-    card.addEventListener('mouseleave', () => {
-      if (card.dataset.hover) {
-        close();
-        delete card.dataset.hover;
-      }
-    });
+    ro.observe(panel);
   });
 });
 
-// 2) Mailto без бэкенда
-function moSendMail(e) {
-  e.preventDefault();
-
-  const nomEl = document.getElementById('mo-nom');
-  const emailEl = document.getElementById('mo-email');
-  const msgEl = document.getElementById('mo-msg');
-
-  const nom = (nomEl?.value || '').trim();
-  const email = (emailEl?.value || '').trim();
-  const msg = (msgEl?.value || '').trim();
-
-  const subject = `[Site RSE] Message de ${nom || 'Client'}`;
-  const body =
-    `Nom: ${nom}\n` +
-    `Email: ${email}\n\n` +
-    `${msg}`;
-
-  const href = `mailto:contact@ostanin-rse.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  window.location.href = href;
-
-  const ok = document.getElementById('mo-ok');
-  if (ok) ok.hidden = false;
-}
