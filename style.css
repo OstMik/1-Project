@@ -178,6 +178,7 @@ textarea.mo-input{min-height:140px;resize:vertical}
 .mission-figure {
   margin: 0;
   border-radius: 20px;
+  overflow: hidden; /* fallback for older browsers */
   overflow: clip;
   background: linear-gradient(180deg, rgba(77,212,162,.25), transparent 60%);
   border: 1px solid var(--line);
@@ -377,6 +378,7 @@ textarea.mo-input{min-height:140px;resize:vertical}
 /* Картинка: ограничим высоту и обрежем излишки, чтобы секция не растягивалась */
 .mission-figure{
   max-height: 420px;       /* при необходимости уменьшай до 360px */
+  overflow: hidden;        /* fallback for older browsers */
   overflow: clip;          /* скрываем лишнее */
 }
 .mission-figure img{
