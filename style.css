@@ -104,55 +104,6 @@ a{color:inherit;text-decoration:none}
   box-shadow:0 12px 34px rgba(0,0,0,.14);
 }
 
-.service-toggle{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  width:100%;
-  text-align:left;
-  background:none;
-  border:none;
-  padding:0;
-  color:inherit;
-  cursor:pointer;
-  font-weight:600;
-  font-size:1.05rem;
-}
-.service-toggle::after{
-  content:"";
-  width:12px;
-  height:12px;
-  border:2px solid currentColor;
-  border-left:0;
-  border-top:0;
-  transform:rotate(45deg);
-  transition:transform .3s ease;
-}
-.mo-service.is-open .service-toggle::after{
-  transform:rotate(-135deg);
-}
-.service-toggle:focus-visible{
-  outline:none;
-  box-shadow:0 0 0 2px var(--accent);
-}
-.service-panel{
-  max-height:0;
-  overflow:hidden;
-  opacity:0;
-  transition:max-height .3s ease, opacity .3s ease;
-}
-.mo-service.is-open .service-panel{
-  max-height:600px;
-  opacity:1;
-  margin-top:var(--space-s);
-  border-top:1px solid var(--line);
-  padding-top:var(--space-s);
-}
-.service-panel ul{
-  margin:0;
-  padding-left:20px;
-  color:var(--muted);
-}
 
 /* Collaboration */
 .mo-collab{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch;border-radius:22px;overflow:hidden}
@@ -506,53 +457,6 @@ input, textarea, select, button { font: inherit; }
 #services { --title-lh: 1.4; }
 #services .mo-service h2{ margin: 0 0 6px; }
 
-#services .mo-service .service-toggle{
-  display: block;
-  position: relative;      /* для стрелки */
-  padding-right: 24px;     /* место под стрелку */
-  width: 100%;
-  text-align: left;
-  background: none;
-  border: 0;
-  color: var(--accent);
-  font: inherit;
-  font-weight: 600;
-  line-height: var(--title-lh);
-  white-space: normal;
-  word-break: break-word;
-  overflow: hidden;
-  cursor: pointer;
-  transition: color .2s ease, transform .15s ease, max-height .25s ease, min-height .25s ease;
-}
-#services .mo-service .service-toggle:hover,
-#services .mo-service .service-toggle:focus-visible{ color: var(--accent2); }
-#services .mo-service .service-toggle:focus{
-  outline: none;
-  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
-  border-radius: 6px;
-}
-
-/* Стрелка (не влияет на высоту) */
-#services .mo-service .service-toggle::after{
-  content: "▾";
-  position: absolute;
-  right: 0;
-  top: 0.1em;
-  transition: transform .2s ease;
-  opacity: .85;
-}
-#services .mo-service.is-open .service-toggle::after{ transform: rotate(-180deg); }
-
-/* Высота заголовка: закрыто = 2 строки, открыто = 6 строк (опционально) */
-#services .mo-service:not(.is-open) .service-toggle{
-  min-height: calc(2 * var(--title-lh) * 1em);
-  max-height: calc(2 * var(--title-lh) * 1em);
-}
-#services .mo-service.is-open .service-toggle{
-  min-height: calc(6 * var(--title-lh) * 1em);
-  max-height: calc(6 * var(--title-lh) * 1em);
-}
-
 /* Панель с текстом (анимация высоты/прозрачности; visibility управляет JS через hidden) */
 #services .service-panel{
   max-height: 0;
@@ -564,37 +468,38 @@ input, textarea, select, button { font: inherit; }
   margin-top: var(--space-s);
   opacity: 1;
 }
-/* Убираем дефолтную рамку и даём аккуратный кастомный фокус */
-#services .service-toggle {
-  outline: none !important;
-  box-shadow: none !important;
-}
-/* Заголовок сервиса как цветная кнопка */
+
+/* Service toggle button */
 #services .mo-service .service-toggle {
   display: block;
   position: relative;
-  padding: 8px 12px;           /* отступы как у кнопки */
+  padding: 8px 12px;
   width: 100%;
   text-align: left;
-  background: var(--accent);   /* фон как у кнопки */
+  background: var(--accent);
   border: none;
-  color: #fff;                 /* белый текст */
+  color: #fff;
   font: inherit;
   font-weight: 600;
   line-height: 1.4;
-  border-radius: 8px;          /* скругления как у кнопок */
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color .2s ease, transform .15s ease;
+  transition: background-color .2s ease, transform .15s ease, max-height .25s ease, min-height .25s ease;
 }
 
+/* Hover & focus states */
 #services .mo-service .service-toggle:hover,
 #services .mo-service .service-toggle:focus-visible {
-  background: var(--accent2);  /* фон при hover/focus */
+  background: var(--accent2);
   color: #fff;
   transform: translateY(-2px);
 }
+#services .mo-service .service-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
+}
 
-/* Стрелка */
+/* Arrow indicator */
 #services .mo-service .service-toggle::after {
   content: "▾";
   position: absolute;
@@ -604,17 +509,15 @@ input, textarea, select, button { font: inherit; }
   transition: transform .2s ease;
   opacity: .9;
 }
-
 #services .mo-service.is-open .service-toggle::after {
   transform: translateY(-50%) rotate(-180deg);
 }
 
-/* Высота: 2 строки в закрытом, 6 строк в открытом состоянии */
+/* Height states */
 #services .mo-service:not(.is-open) .service-toggle {
-  min-height: calc(2 * 1.4em + 16px); /* текст + паддинги */
+  min-height: calc(2 * 1.4em + 16px);
   max-height: calc(2 * 1.4em + 16px);
 }
-
 #services .mo-service.is-open .service-toggle {
   min-height: calc(6 * 1.4em + 16px);
   max-height: calc(6 * 1.4em + 16px);
