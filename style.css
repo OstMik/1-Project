@@ -619,3 +619,95 @@ input, textarea, select, button { font: inherit; }
   min-height: calc(6 * 1.4em + 16px);
   max-height: calc(6 * 1.4em + 16px);
 }
+/* 2) Круглый аватар с мягким кольцом */
+.mo-hero-figure.mod-circle{
+  --ring: color-mix(in oklab, var(--accent) 45%, transparent);
+  max-width: clamp(180px, 22vw, 260px); /* было: clamp(200px, 26vw, 300px) */
+  padding: 8px;                         /* было: 10px */
+  background: radial-gradient(60% 60% at 50% 50%, var(--ring), transparent 70%);
+  border-radius: 999px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
+  justify-self: end;                    /* прижмёт фото к правой колонке в гриде */
+}
+
+.mo-hero-figure.mod-circle img{
+  aspect-ratio: 1 / 1;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Мобайл: центр, немного меньше */
+@media (max-width: 980px){
+  .mo-hero-figure.mod-circle{
+    max-width: 200px;   /* компактнее на мобайле */
+    margin: 0 auto 10px;/* центр + небольшой отступ снизу */
+    justify-self: center;
+  }
+}
+@media (max-width: 980px){
+  .mo-hero .mo-hero-grid{ justify-items: center; } /* центрирует детей грида */
+  .mo-hero-content{ width: 100%; }                  /* чтобы текст не «ломался» */
+}
+/* === Hero: круглый аватар — стабильный вариант === */
+.mo-hero-figure.mod-circle{
+  --ring: color-mix(in oklab, var(--accent) 45%, transparent);
+  max-width: clamp(180px, 22vw, 260px);  /* компактнее на десктопе */
+  padding: 0;                             /* убираем padding, чтобы кольцо не "толкало" */
+  background: none;                       /* фон не нужен */
+  border: none;                           /* снимаем базовую квадратную рамку */
+  border-radius: 999px;                   /* круглая обводка */
+  box-shadow: 0 0 0 8px var(--ring), 0 12px 30px rgba(0,0,0,.18); /* кольцо + тень */
+  justify-self: center;                      /* в правой колонке — к правому краю */
+}
+.mo-hero-figure.mod-circle img{
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 35%;               /* чуть выше центра — акцент на лицо */
+  border-radius: 50%;
+}
+
+/* Мобайл: фото сверху, по центру, с небольшим отступом */
+@media (max-width: 980px){
+  .mo-hero-grid{ grid-template-columns: 1fr; }
+  .mo-hero-figure{ order: 1; }
+  .mo-hero-content{ order: 2; }
+
+  .mo-hero-figure.mod-circle{
+    max-width: 200px;
+    justify-self: center;   /* центрируем грид-элемент */
+    margin: 0 auto 12px;    /* центр + «воздух» снизу */
+  }
+}
+/* === HERO: на мобиле картинка сверху, шириной контейнера === */
+@media (max-width: 980px){
+  /* одна колонка и правильный порядок */
+  .mo-hero .mo-hero-grid{ grid-template-columns: 1fr; justify-items: stretch; }
+  .mo-hero-figure{ order: 1; }
+  .mo-hero-content{ order: 2; }
+
+  /* превращаем круг в «баннер» как в Mission */
+  .mo-hero-figure.mod-circle{
+    max-width: none;       /* не ограничиваем */
+    width: 100%;           /* во всю ширину .mo-wrap */
+    margin: 0 0 14px 0;    /* отступ под картинкой */
+    justify-self: stretch; /* растянуть в гриде */
+    border-radius: 20px;   /* прямоугольник со скруглением */
+    background: none;      /* убираем фон-«кольцо» */
+    box-shadow: 0 10px 24px rgba(0,0,0,.12); /* мягкая тень, как в Mission */
+    border: 1px solid var(--line);
+    padding: 0;            /* точно без внутреннего отступа */
+  }
+  .mo-hero-figure.mod-circle img{
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10; /* пропорция «карточки» */
+    object-fit: cover;
+    object-position: 50% 40%;
+    border-radius: 20px;   /* наследуем округление */
+  }
+}
