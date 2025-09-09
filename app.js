@@ -81,4 +81,3 @@ document.addEventListener('DOMContentLoaded', () => {
     ro.observe(panel);
   });
 });
-
