@@ -444,7 +444,8 @@ input, textarea, select, button { font: inherit; }
   padding: 3rem 1.5rem;
   border: 2px solid var(--services-border);
   border-radius: var(--radius);
-  transform: rotateZ(-1deg);
+  --tilt: -1deg;
+  transform: rotateZ(var(--tilt));
   box-shadow: none;
   transition:
     transform .3s ease-out,
@@ -452,28 +453,25 @@ input, textarea, select, button { font: inherit; }
     box-shadow .3s ease-out;
 }
 #services .mo-service:nth-of-type(2){
-  transform: rotateZ(-1deg) translateY(-10px);
+  --tilt: 2deg;
+  transform: rotateZ(var(--tilt)) translateY(-10px);
 }
-#services .mo-service:nth-of-type(3),
+#services .mo-service:nth-of-type(3){
+  --tilt: -2deg;
+}
 #services .mo-service:nth-of-type(5){
-  transform: rotateZ(1deg);
+  --tilt: 2deg;
 }
 @media (hover:hover) and (pointer:fine) {
   #services .mo-service:hover,
   #services .mo-service:focus-within{
-    transform: scale(1.02) rotateZ(1deg);
+    transform: scale(1.02) rotateZ(calc(var(--tilt) * -1));
     background-color: var(--services-bg-hover);
     box-shadow: var(--services-shadow);
   }
   #services .mo-service:nth-of-type(2):hover,
   #services .mo-service:nth-of-type(2):focus-within{
-    transform: scale(1.02) rotateZ(-1deg) translateY(-10px);
-  }
-  #services .mo-service:nth-of-type(3):hover,
-  #services .mo-service:nth-of-type(3):focus-within,
-  #services .mo-service:nth-of-type(5):hover,
-  #services .mo-service:nth-of-type(5):focus-within{
-    transform: scale(1.02) rotateZ(-1deg);
+    transform: scale(1.02) rotateZ(calc(var(--tilt) * -1)) translateY(-10px);
   }
 }
 
