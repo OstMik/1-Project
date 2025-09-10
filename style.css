@@ -454,7 +454,7 @@ input, textarea, select, button { font: inherit; }
   #services .mo-service:nth-of-type(2):hover,
   #services .mo-service:nth-of-type(2):focus-within,
   #services .mo-service:nth-of-type(2).is-open {
-    transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
+    transform: scale(1.02); /* Только масштабирование */
   }
 }
 
@@ -468,7 +468,7 @@ input, textarea, select, button { font: inherit; }
   }
   #services .mo-service:nth-of-type(2):hover,
   #services .mo-service:nth-of-type(2):focus-within {
-    transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
+    transform: scale(1.02); /* Только масштабирование */
   }
 }
 
@@ -477,7 +477,7 @@ input, textarea, select, button { font: inherit; }
   transform: scale(1.02); /* Прямое положение с масштабированием */
 }
 #services .mo-service:nth-of-type(2).is-open {
-  transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
+  transform: scale(1.02); /* Только масштабирование */
 }
 
 /* Заголовок-кнопка */
