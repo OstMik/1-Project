@@ -109,21 +109,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const contactContainer = document.querySelector('.contact-container');
   const contactItems = document.querySelectorAll('.contact-item');
   if (contactContainer && contactItems.length && window.innerWidth >= 640) {
+    const defaultBg = 'bg-neutral-100';
+    const defaultText = 'text-neutral-800';
+    const defaultHoverBg = '#f8fafc';
+
     contactItems.forEach((item) => {
-      const bgColor = item.dataset.bgcolor;
-      const hoverBgColor = item.dataset.hoverbghexcolor;
-      const textColor = item.dataset.textcolor;
+      const bgColor = item.dataset.bgcolor || '';
+      const hoverBgColor = item.dataset.hoverbghexcolor || defaultHoverBg;
+      const textColor = item.dataset.textcolor || '';
 
       item.addEventListener('mouseover', () => {
         document.documentElement.style.setProperty('--active-bg-color', hoverBgColor);
-        contactContainer.classList.remove('bg-neutral-100', 'text-neutral-800');
-        contactContainer.classList.add(bgColor, textColor);
+        contactContainer.classList.remove(defaultBg, defaultText);
+        if (bgColor) contactContainer.classList.add(bgColor);
+        if (textColor) contactContainer.classList.add(textColor);
       });
 
       item.addEventListener('mouseout', () => {
-        document.documentElement.style.setProperty('--active-bg-color', '#f8fafc');
-        contactContainer.classList.remove(bgColor, textColor);
-        contactContainer.classList.add('bg-neutral-100', 'text-neutral-800');
+        document.documentElement.style.setProperty('--active-bg-color', defaultHoverBg);
+        if (bgColor) contactContainer.classList.remove(bgColor);
+        if (textColor) contactContainer.classList.remove(textColor);
+        contactContainer.classList.add(defaultBg, defaultText);
       });
     });
   }
