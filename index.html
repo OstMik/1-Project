@@ -219,32 +219,29 @@
 
 <!-- wp:html -->
 <section id="contact">
-  <div class="pb-16 pt-20 text-neutral-800 transition-all duration-300 lg:pb-52 lg:pt-40">
-    <div class="mx-auto grid max-w-screen-lg grid-cols-4 gap-0 px-4 sm:grid-cols-8 sm:px-8 lg:grid-cols-12 lg:gap-4 lg-with-padding:px-0">
-      <div class="relative col-span-full sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">
-        <h3 class="mb-4 sm:mt-2 text-lg font-bold md:text-xl">Contactez-moi</h3>
+  <div class="contact-container">
+    <div class="contact-grid">
+      <div class="contact-title">
+        <h3>Contactez-moi</h3>
       </div>
-      <div class="col-span-full sm:col-start-3 sm:col-end-9 lg:col-start-4 lg:col-end-13">
-        <ul class="list-disc pl-5">
-          <li class="contact-item">
-            <a href="mailto:contact@ostanin-rse.fr" target="_blank"
-               class="group grid grid-cols-4 items-center py-4 sm:grid-cols-6 lg:grid-cols-9 border-b border-gray-200 hover:bg-green-50 transition-colors duration-300">
-              <span class="col-start-1 col-end-4 font-bold sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">E-mail</span>
-              <span class="col-start-1 col-end-4 font-mono sm:col-start-3 sm:col-end-5 lg:col-start-4 lg:col-end-7">contact@ostanin-rse.fr</span>
-              <span class="col-start-4 col-end-4 justify-self-end transition-transform duration-300 group-hover:rotate-45 sm:col-start-5 sm:col-end-7 lg:col-start-7 lg:col-end-10">
+      <div class="contact-items">
+        <ul>
+          <li class="contact-item email">
+            <a href="mailto:contact@ostanin-rse.fr" target="_blank" class="contact-link">
+              <span class="contact-label">E-mail</span>
+              <span class="contact-value">contact@ostanin-rse.fr</span>
+              <span class="contact-arrow">
                 <svg width="16" height="1em" viewBox="0 0 256 256" data-icon="ph:arrow-up-right-bold">
                   <path fill="currentColor" d="M204,64V168a12,12,0,0,1-24,0V100.49L84.24,196.24a12,12,0,0,1-17-17L163,83.51H96a12,12,0,0,1,0-24H200A12,12,0,0,1,204,64Z"/>
                 </svg>
               </span>
             </a>
           </li>
-
-          <li class="contact-item">
-            <a href="https://www.linkedin.com/in/mikhailostanin/" target="_blank"
-               class="group grid grid-cols-4 items-center py-4 sm:grid-cols-6 lg:grid-cols-9 border-b border-gray-200 hover:bg-green-50 transition-colors duration-300">
-              <span class="col-start-1 col-end-4 font-bold sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">LinkedIn</span>
-              <span class="col-start-1 col-end-4 font-mono sm:col-start-3 sm:col-end-5 lg:col-start-4 lg:col-end-7">@mikhailostanin</span>
-              <span class="col-start-4 col-end-4 justify-self-end transition-transform duration-300 group-hover:rotate-45 sm:col-start-5 sm:col-end-7 lg:col-start-7 lg:col-end-10">
+          <li class="contact-item linkedin">
+            <a href="https://www.linkedin.com/in/mikhailostanin/" target="_blank" class="contact-link">
+              <span class="contact-label">LinkedIn</span>
+              <span class="contact-value">@mikhailostanin</span>
+              <span class="contact-arrow">
                 <svg width="16" height="1em" viewBox="0 0 256 256" data-icon="ph:arrow-up-right-bold">
                   <path fill="currentColor" d="M204,64V168a12,12,0,0,1-24,0V100.49L84.24,196.24a12,12,0,0,1-17-17L163,83.51H96a12,12,0,0,1,0-24H200A12,12,0,0,1,204,64Z"/>
                 </svg>
@@ -256,6 +253,7 @@
     </div>
   </div>
 </section>
+<!-- /wp:html -->
 
 </main>
 
