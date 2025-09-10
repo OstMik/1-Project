@@ -368,7 +368,6 @@ input, textarea, select, button { font: inherit; }
 
 /* 1) Крупный и стабильный заголовок секции */
 #services-title{
-  font-size: clamp(26px, 3.2vw, 36px);
   line-height: 1.15;
   margin: 0 0 var(--space-s);
 }
@@ -376,14 +375,12 @@ input, textarea, select, button { font: inherit; }
 /* 2) Заголовки карточек услуг */
 .mo-service h2{
   margin: 0 0 6px;
-  font-size: clamp(18px, 2.1vw, 22px); /* можно поднять верхнюю границу до 24px */
 }
 
 /* Кнопка внутри h2 наследует типографику заголовка */
 .mo-service h2 .service-toggle{
   font: inherit;
   line-height: inherit;
-  font-weight: 600; /* легкий акцент, можно убрать */
 }
 
 /* === Services — финальный CSS (без равнения высот) === */
@@ -493,7 +490,6 @@ input, textarea, select, button { font: inherit; }
   overflow: hidden;
   opacity: 0;
   transition: max-height .3s ease, opacity .2s ease, margin-top .2s ease;
-  font-size: 0.95rem;
 }
 
 #services .mo-service.is-open .service-panel {
@@ -525,7 +521,6 @@ input, textarea, select, button { font: inherit; }
   border: none;
   color: #fff;
   font: inherit;
-  font-weight: 600;
   line-height: 1.4;
   border-radius: 8px;
   cursor: pointer;
@@ -646,13 +641,10 @@ input, textarea, select, button { font: inherit; }
 
 .contact-title h3 {
   margin-bottom: 1rem;
-  font-size: 1.25rem;
-  font-weight: bold;
 }
 
 @media (min-width: 768px) {
   .contact-title h3 {
-    font-size: 1.5rem;
     margin-top: 0.5rem;
   }
 }
@@ -686,10 +678,6 @@ input, textarea, select, button { font: inherit; }
   .contact-link {
     grid-template-columns: 1fr 2fr 1fr;
   }
-}
-
-.contact-label {
-  font-weight: bold;
 }
 
 .contact-value {
