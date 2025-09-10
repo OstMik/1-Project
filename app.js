@@ -21,6 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
     /* ===== 3) Services: аккордеон ===== */
     const toggles = document.querySelectorAll('#services .service-toggle');
 
+    const alignPanelHeights = () => {
+      const openPanels = document.querySelectorAll('#services .service-panel:not([hidden])');
+      if (openPanels.length === 0) return;
+
+      let maxHeight = 0;
+      openPanels.forEach(panel => {
+        panel.style.maxHeight = '';
+        maxHeight = Math.max(maxHeight, panel.scrollHeight);
+      });
+
+      openPanels.forEach(panel => {
+        panel.style.maxHeight = maxHeight + 'px';
+      });
+    };
+
     toggles.forEach((btn) => {
       if (!btn.hasAttribute('type')) btn.setAttribute('type', 'button');
 
@@ -58,21 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         };
         panel.addEventListener('transitionend', onEnd);
-      };
-
-      const alignPanelHeights = () => {
-        const openPanels = document.querySelectorAll('#services .service-panel:not([hidden])');
-        if (openPanels.length === 0) return;
-
-        let maxHeight = 0;
-        openPanels.forEach(panel => {
-          panel.style.maxHeight = '';
-          maxHeight = Math.max(maxHeight, panel.scrollHeight);
-        });
-
-        openPanels.forEach(panel => {
-          panel.style.maxHeight = maxHeight + 'px';
-        });
       };
 
       // Клик: один тап/клик = действие
