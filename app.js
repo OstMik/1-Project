@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const expanded = btn.getAttribute('aria-expanded') === 'true';
       expanded ? close() : open();
+      btn.blur();
     });
 
     // Клавиатура: Enter/Space
