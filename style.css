@@ -379,8 +379,8 @@ input, textarea, select, button { font: inherit; }
 
 /* Кнопка внутри h2 наследует типографику заголовка */
 .mo-service h2 .service-toggle{
-  font: inherit;
-  line-height: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 /* === Services — финальный CSS (без равнения высот) === */
