@@ -96,7 +96,7 @@ function moSendMail(e) {
   const msg   = document.getElementById('mo-msg').value.trim();
 
   const subject = encodeURIComponent(`Contact via site – ${nom}`);
-  const body    = encodeURIComponent(`Nom: ${nom}\nEmail: ${mail}\n\n${msg}`);
+  const body    = encodeURIComponent('Nom: ' + nom + '\nEmail: ' + mail + '\n\n' + msg);
   window.location.href = `mailto:contact@ostanin-rse.fr?subject=${subject}&body=${body}`;
 
   const ok = document.getElementById('mo-ok');
