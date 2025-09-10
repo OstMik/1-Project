@@ -8,6 +8,12 @@
   --hero-pad-top:clamp(16px,4vw,28px);
   --hero-pad-bottom:clamp(24px,5vw,36px);
   --grid-gap:var(--space-s);
+  --services-bg: #ffffff;
+  --services-bg-hover: #EBDCF8;
+  --services-shadow: 0 0.25rem 0.5rem #E6CCF5;
+  --services-border: #2D424D;
+  --services-color: #14252E;
+  --services-font: "YourFont", sans-serif;
 }
 
 /* Base */
@@ -90,20 +96,6 @@ a{color:inherit;text-decoration:none}
 .mo-cta{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin-top:16px}
 
 /* Sections */
-.mo-service{
-  padding:clamp(16px,4vw,24px);
-  background:linear-gradient(135deg,#fff,#f8faff);
-  border:1px solid var(--line);
-  border-radius:var(--radius);
-  position:relative;
-  transition:background .3s ease, transform .3s ease, box-shadow .3s ease;
-}
-.mo-service:hover{
-  background:linear-gradient(135deg,#fff,#eef3ff);
-  transform:translateY(-4px) scale(1.02);
-  box-shadow:0 12px 34px rgba(0,0,0,.14);
-}
-
 
 /* Collaboration */
 .mo-collab{display:grid;grid-template-columns:1.05fr .95fr;gap:0;align-items:stretch;border-radius:22px;overflow:hidden}
@@ -443,16 +435,29 @@ input, textarea, select, button { font: inherit; }
   #services .mo-grid.mo-grid-3 > .mo-service{ flex-basis: 100%; }
 }
 
-/* Карточка: кликабельный вид */
+/* Service card interactive effect */
 #services .mo-service{
   cursor: pointer;
-  transition: background-color .2s ease, border-color .2s ease, box-shadow .2s ease;
+  background-color: var(--services-bg);
+  color: var(--services-color);
+  font-family: var(--services-font);
+  padding: 3rem 1.5rem;
+  border: 2px solid var(--services-border);
+  border-radius: var(--radius);
+  transform: rotateZ(-1deg);
+  box-shadow: none;
+  transition:
+    transform .3s ease-out,
+    background-color .35s,
+    box-shadow .3s ease-out;
 }
-#services .mo-service:hover,
-#services .mo-service:focus-within{
-  background: color-mix(in oklab, #fff 85%, var(--accent) 6%);
-  box-shadow: 0 8px 26px rgba(0,0,0,.08);
-  border-color: color-mix(in oklab, var(--line) 70%, var(--accent) 30%);
+@media (hover:hover) and (pointer:fine) {
+  #services .mo-service:hover,
+  #services .mo-service:focus-within{
+    transform: rotateZ(1deg);
+    background-color: var(--services-bg-hover);
+    box-shadow: var(--services-shadow);
+  }
 }
 
 /* Заголовок-кнопка */
