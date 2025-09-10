@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Mikhail Ostanin — Consultant RSE</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -217,22 +218,38 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:html -->
-<section id="contact" class="mo-section mo-reveal" aria-labelledby="contact-title">
-  <div class="mo-wrap">
-    <h2 id="contact-title">Contact</h2>
-    <div class="mo-grid mo-grid-2">
-
-      <!-- Блок с контактами -->
-      <div class="mo-card mo-card-pad mo-reveal">
-        <h3>Coordonnées</h3>
-        <address>
-          <strong>Mikhail Ostanin</strong><br>
-          Consultant RSE &amp; transition durable<br>
-          Le Mans, France<br>
-          E-mail : <a href="mailto:contact@ostanin-rse.fr">contact@ostanin-rse.fr</a>
-        </address>
+<section id="contact">
+  <div id="contact-container" class="bg-neutral-100 pb-16 pt-20 text-neutral-800 transition-all duration-300 lg:pb-52 lg:pt-40">
+    <div class="mx-auto grid max-w-screen-lg grid-cols-4 gap-0 px-4 sm:grid-cols-8 sm:px-8 lg:grid-cols-12 lg:gap-4 lg-with-padding:px-0">
+      <div class="relative col-span-full sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">
+        <h3 class="mb-4 sm:mt-2 text-lg font-bold md:text-xl">Contactez-moi</h3>
       </div>
-
+      <div class="col-span-full sm:col-start-3 sm:col-end-9 lg:col-start-4 lg:col-end-13">
+        <ul>
+          <li id="email-contact-item" class="contact-item group" data-bgcolor="bg-blue-100" data-hoverBgHexColor="#689BF7" data-textcolor="text-blue-800">
+            <a href="mailto:contact@ostanin-rse.fr" target="_blank" class="grid grid-cols-4 items-center py-4 sm:grid-cols-6 lg:grid-cols-9 border-b border-gray-200">
+              <span class="col-start-1 col-end-4 font-bold sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">E-mail</span>
+              <span class="col-start-1 col-end-4 font-mono sm:col-start-3 sm:col-end-5 lg:col-start-4 lg:col-end-7">contact@ostanin-rse.fr</span>
+              <span class="col-start-4 col-end-4 justify-self-end transition group-hover:rotate-45 sm:col-start-5 sm:col-end-7 lg:col-start-7 lg:col-end-10">
+                <svg width="16" height="1em" viewBox="0 0 256 256" data-icon="ph:arrow-up-right-bold">
+                  <path fill="currentColor" d="M204,64V168a12,12,0,0,1-24,0V100.49L84.24,196.24a12,12,0,0,1-17-17L163,83.51H96a12,12,0,0,1,0-24H200A12,12,0,0,1,204,64Z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+          <li id="linkedin-contact-item" class="contact-item group" data-bgcolor="bg-purple-100" data-hoverBgHexColor="#EBDCF8" data-textcolor="text-purple-900">
+            <a href="https://www.linkedin.com/in/mikhailostanin/" target="_blank" class="grid grid-cols-4 items-center py-4 sm:grid-cols-6 lg:grid-cols-9 border-b border-gray-200">
+              <span class="col-start-1 col-end-4 font-bold sm:col-start-1 sm:col-end-3 lg:col-start-1 lg:col-end-4">LinkedIn</span>
+              <span class="col-start-1 col-end-4 font-mono sm:col-start-3 sm:col-end-5 lg:col-start-4 lg:col-end-7">@mikhailostanin</span>
+              <span class="col-start-4 col-end-4 justify-self-end transition group-hover:rotate-45 sm:col-start-5 sm:col-end-7 lg:col-start-7 lg:col-end-10">
+                <svg width="16" height="1em" viewBox="0 0 256 256" data-icon="ph:arrow-up-right-bold">
+                  <path fill="currentColor" d="M204,64V168a12,12,0,0,1-24,0V100.49L84.24,196.24a12,12,0,0,1-17-17L163,83.51H96a12,12,0,0,1,0-24H200A12,12,0,0,1,204,64Z"/>
+                </svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
