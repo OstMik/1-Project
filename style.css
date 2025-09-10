@@ -454,7 +454,7 @@ input, textarea, select, button { font: inherit; }
 }
 #services .mo-service:nth-of-type(2){
   --tilt: 0deg;
-  transform: translateY(-10px);
+  transform: none;
 }
 #services .mo-service:nth-of-type(3){
   --tilt: -2deg;
