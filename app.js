@@ -27,12 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let maxHeight = 0;
       openPanels.forEach(panel => {
+        panel.style.minHeight = '';
         panel.style.maxHeight = '';
         maxHeight = Math.max(maxHeight, panel.scrollHeight);
       });
 
       openPanels.forEach(panel => {
         panel.style.maxHeight = maxHeight + 'px';
+        panel.style.minHeight = maxHeight + 'px';
       });
     };
 
@@ -64,6 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
         card.classList.remove('is-open');
         btn.setAttribute('aria-expanded', 'false');
         panel.style.maxHeight = '0px';
+        panel.style.minHeight = '0px';
         panel.style.opacity = '0';
         const onEnd = (e) => {
           if (e.propertyName === 'max-height') {
