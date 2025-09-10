@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ===== 4) Contact section hover effects ===== */
-  const contactContainer = document.getElementById('contact-container');
+  const contactContainer = document.querySelector('.contact-container');
   const contactItems = document.querySelectorAll('.contact-item');
   if (contactContainer && contactItems.length && window.innerWidth >= 640) {
     contactItems.forEach((item) => {
