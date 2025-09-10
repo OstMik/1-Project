@@ -518,7 +518,7 @@ input, textarea, select, button { font: inherit; }
   color: #fff;
   transform: translateY(-2px);
 }
-#services .mo-service .service-toggle:focus {
+#services .mo-service .service-toggle:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--accent);
 }
