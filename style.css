@@ -13,7 +13,6 @@
   --services-shadow: 0 0.25rem 0.5rem rgba(46,125,50,0.25);
   --services-border: #1B5E20;
   --services-color: #2E7D32;
-  --services-font: "YourFont", sans-serif;
 }
 
 /* Base */
@@ -416,7 +415,6 @@ input, textarea, select, button { font: inherit; }
   cursor: pointer;
   background-color: var(--services-bg);
   color: var(--services-color);
-  font-family: var(--services-font);
   padding: 3rem 1.5rem;
   border: 2px solid var(--services-border);
   border-radius: var(--radius);
@@ -695,7 +693,6 @@ input, textarea, select, button { font: inherit; }
 }
 
 .contact-value {
-  font-family: monospace;
   color: #4b5563;
 }
 
