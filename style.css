@@ -316,7 +316,7 @@ a{color:inherit;text-decoration:none}
 
 /* Индивидуальные твики при желании (можно удалить/оставить) */
 #services.mo-section{ padding: clamp(24px, 5vw, 36px) 0; }
-#contact.mo-section{  padding: clamp(var(--section-y-min), 6vw, var(--section-y-max)) var(--space-l); }
+#contact.mo-section{ padding: clamp(24px, 5vw, 36px) 0; }
 
 /* На очень больших экранах не раздуваем слишком сильно */
 @media (min-width: 1400px){
@@ -617,7 +617,7 @@ input, textarea, select, button { font: inherit; }
 }
 
 .contact-container {
-  padding: var(--space-s) var(--space-m);
+  padding: var(--space-s) 0;
   max-width: var(--maxw);
   margin: 0 auto;
 }
@@ -697,6 +697,6 @@ input, textarea, select, button { font: inherit; }
 }
 
 @media (max-width: 640px) {
-  .contact-container { padding: var(--space-m); }
+  .contact-container { padding: var(--space-m) 0; }
   .contact-link { padding: var(--space-s) var(--space-m); border-radius: var(--radius); }
 }
