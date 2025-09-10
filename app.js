@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       revealEls.forEach(el => io.observe(el));
     }
 
-    /* ===== 3) Services: аккордеон (без равнения высот) ===== */
+    /* ===== 3) Services: аккордеон ===== */
     const toggles = document.querySelectorAll('#services .service-toggle');
 
     toggles.forEach((btn) => {
@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => {
           card.classList.add('is-open');
           btn.setAttribute('aria-expanded', 'true');
-          panel.style.maxHeight = panel.scrollHeight + 'px';
+          panel.style.maxHeight = panel.scrollHeight + 'px'; // Сначала своя высота
           panel.style.opacity = '1';
+          alignPanelHeights(); // Затем выравниваем все открытые
         });
       };
 
@@ -53,9 +54,25 @@ document.addEventListener('DOMContentLoaded', () => {
           if (e.propertyName === 'max-height') {
             panel.hidden = true;               // прячем из таб-цикла после схлопывания
             panel.removeEventListener('transitionend', onEnd);
+            alignPanelHeights(); // Выравниваем оставшиеся панели
           }
         };
         panel.addEventListener('transitionend', onEnd);
+      };
+
+      const alignPanelHeights = () => {
+        const openPanels = document.querySelectorAll('#services .service-panel:not([hidden])');
+        if (openPanels.length === 0) return;
+
+        let maxHeight = 0;
+        openPanels.forEach(panel => {
+          panel.style.maxHeight = '';
+          maxHeight = Math.max(maxHeight, panel.scrollHeight);
+        });
+
+        openPanels.forEach(panel => {
+          panel.style.maxHeight = maxHeight + 'px';
+        });
       };
 
       // Клик: один тап/клик = действие
@@ -78,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const ro = new ResizeObserver(() => {
         if (btn.getAttribute('aria-expanded') === 'true') {
           panel.style.maxHeight = panel.scrollHeight + 'px';
+          alignPanelHeights();
         }
       });
       ro.observe(panel);
