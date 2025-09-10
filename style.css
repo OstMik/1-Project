@@ -453,8 +453,8 @@ input, textarea, select, button { font: inherit; }
     box-shadow .3s ease-out;
 }
 #services .mo-service:nth-of-type(2){
-  --tilt: 2deg;
-  transform: rotateZ(var(--tilt)) translateY(-10px);
+  --tilt: 0deg;
+  transform: translateY(-10px);
 }
 #services .mo-service:nth-of-type(3){
   --tilt: -2deg;
@@ -471,7 +471,7 @@ input, textarea, select, button { font: inherit; }
   }
   #services .mo-service:nth-of-type(2):hover,
   #services .mo-service:nth-of-type(2):focus-within{
-    transform: scale(1.02) rotateZ(calc(var(--tilt) * -1)) translateY(-10px);
+    transform: scale(1.02) translateY(-10px);
   }
 }
 
