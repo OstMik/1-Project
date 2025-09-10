@@ -452,12 +452,14 @@ input, textarea, select, button { font: inherit; }
     transform: none;
   }
   #services .mo-service:hover,
-  #services .mo-service:focus-within {
-    transform: scale(1.02); /* Сохраняем только масштабирование */
+  #services .mo-service:focus-within,
+  #services .mo-service.is-open {
+    transform: scale(1.02); /* Только масштабирование */
   }
   #services .mo-service:nth-of-type(2):hover,
-  #services .mo-service:nth-of-type(2):focus-within {
-    transform: scale(1.02) translateY(-10px); /* Сохраняем подъем для 2-й карточки */
+  #services .mo-service:nth-of-type(2):focus-within,
+  #services .mo-service:nth-of-type(2).is-open {
+    transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
   }
 }
 
@@ -465,14 +467,22 @@ input, textarea, select, button { font: inherit; }
 @media (hover:hover) and (pointer:fine) {
   #services .mo-service:hover,
   #services .mo-service:focus-within {
-    transform: scale(1.02) rotateZ(calc(var(--tilt) * -1));
+    transform: scale(1.02); /* Выравниваем и масштабируем */
     background-color: var(--services-bg-hover);
     box-shadow: var(--services-shadow);
   }
   #services .mo-service:nth-of-type(2):hover,
   #services .mo-service:nth-of-type(2):focus-within {
-    transform: scale(1.02) translateY(-10px);
+    transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
   }
+}
+
+/* При открытии панели карточка выравнивается */
+#services .mo-service.is-open {
+  transform: scale(1.02); /* Прямое положение с масштабированием */
+}
+#services .mo-service:nth-of-type(2).is-open {
+  transform: scale(1.02) translateY(-10px); /* Подъем для 2-й карточки */
 }
 
 /* Заголовок-кнопка */
