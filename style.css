@@ -1,6 +1,6 @@
 :root{
   --ink:#0e0e0e; --muted:#5f6b76; --line:#e9edf2;
-  --accent:#5D2DE6; --accent2:#8369FF;
+  --accent:#2E7D32; --accent2:#66BB6A;
   --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.10);
   --maxw:1120px;
   --space-xs:8px; --space-s:12px; --space-m:18px; --space-l:24px;
@@ -9,10 +9,10 @@
   --hero-pad-bottom:clamp(24px,5vw,36px);
   --grid-gap:var(--space-s);
   --services-bg: #ffffff;
-  --services-bg-hover: #F2E9FF;
-  --services-shadow: 0 0.25rem 0.5rem rgba(93,45,230,0.25);
-  --services-border: #3E2AA8;
-  --services-color: #2B1E6B;
+  --services-bg-hover: #E8F5E9;
+  --services-shadow: 0 0.25rem 0.5rem rgba(46,125,50,0.25);
+  --services-border: #1B5E20;
+  --services-color: #2E7D32;
   --services-font: "YourFont", sans-serif;
 }
 
