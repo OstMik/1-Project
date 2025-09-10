@@ -387,10 +387,6 @@ input, textarea, select, button { font: inherit; }
   font-weight: 600; /* легкий акцент, можно убрать */
 }
 
-/* 3) Текст внутри раскрывашки (слегка спокойнее, но не меньше заголовка) */
-.service-panel{
-  font-size: 0.95rem; /* при желании 1rem */
-}
 /* === Services — финальный CSS (без равнения высот) === */
 
 /* Контейнер: flex вместо grid, центрирование рядов */
@@ -416,7 +412,7 @@ input, textarea, select, button { font: inherit; }
 }
 
 /* Service card interactive effect */
-#services .mo-service{
+#services .mo-service {
   cursor: pointer;
   background-color: var(--services-bg);
   color: var(--services-color);
@@ -424,7 +420,7 @@ input, textarea, select, button { font: inherit; }
   padding: 3rem 1.5rem;
   border: 2px solid var(--services-border);
   border-radius: var(--radius);
-  --tilt: -1deg;
+  --tilt: 0deg; /* По умолчанию прямой */
   transform: rotateZ(var(--tilt));
   box-shadow: none;
   transition:
@@ -432,25 +428,49 @@ input, textarea, select, button { font: inherit; }
     background-color .35s,
     box-shadow .3s ease-out;
 }
-#services .mo-service:nth-of-type(2){
+
+/* Наклоны для конкретных карточек на десктопах */
+#services .mo-service:nth-of-type(1), /* Reporting RSE */
+#services .mo-service:nth-of-type(4) { /* Communication */
+  --tilt: -2deg;
+}
+
+#services .mo-service:nth-of-type(3), /* Stratégie RSE */
+#services .mo-service:nth-of-type(5) { /* Événementiel */
+  --tilt: 2deg;
+}
+
+#services .mo-service:nth-of-type(2) { /* Sensibilisation */
   --tilt: 0deg;
   transform: none;
 }
-#services .mo-service:nth-of-type(3){
-  --tilt: -2deg;
+
+/* Убираем наклоны на мобильных (≤ 680px) */
+@media (max-width: 680px) {
+  #services .mo-service {
+    --tilt: 0deg;
+    transform: none;
+  }
+  #services .mo-service:hover,
+  #services .mo-service:focus-within {
+    transform: scale(1.02); /* Сохраняем только масштабирование */
+  }
+  #services .mo-service:nth-of-type(2):hover,
+  #services .mo-service:nth-of-type(2):focus-within {
+    transform: scale(1.02) translateY(-10px); /* Сохраняем подъем для 2-й карточки */
+  }
 }
-#services .mo-service:nth-of-type(5){
-  --tilt: 2deg;
-}
+
+/* Эффекты при наведении/фокусе на десктопах */
 @media (hover:hover) and (pointer:fine) {
   #services .mo-service:hover,
-  #services .mo-service:focus-within{
+  #services .mo-service:focus-within {
     transform: scale(1.02) rotateZ(calc(var(--tilt) * -1));
     background-color: var(--services-bg-hover);
     box-shadow: var(--services-shadow);
   }
   #services .mo-service:nth-of-type(2):hover,
-  #services .mo-service:nth-of-type(2):focus-within{
+  #services .mo-service:nth-of-type(2):focus-within {
     transform: scale(1.02) translateY(-10px);
   }
 }
@@ -459,16 +479,31 @@ input, textarea, select, button { font: inherit; }
 #services { --title-lh: 1.4; }
 #services .mo-service h2{ margin: 0 0 6px; }
 
-/* Панель с текстом (анимация высоты/прозрачности; visibility управляет JS через hidden) */
-#services .service-panel{
+/* Панель с текстом */
+#services .service-panel {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   transition: max-height .3s ease, opacity .2s ease, margin-top .2s ease;
+  font-size: 0.95rem;
 }
-#services .mo-service.is-open .service-panel{
+
+#services .mo-service.is-open .service-panel {
   margin-top: var(--space-s);
   opacity: 1;
+}
+
+/* Улучшение списков внутри панели */
+#services .service-panel ul {
+  list-style-type: disc !important; /* Явно задаём маркеры */
+  padding-left: 1.5rem; /* Отступ для маркеров */
+  margin: 0 0 0.5rem 0; /* Отступы сверху/снизу */
+}
+
+#services .service-panel ul li {
+  margin-bottom: 0.5rem; /* Пробел между пунктами */
+  line-height: 1.4; /* Улучшаем читаемость */
+  padding-left: 0.25rem; /* Отступ от маркера */
 }
 
 /* Service toggle button */
