@@ -41,7 +41,7 @@ a{color:inherit;text-decoration:none}
 /* Layout helpers */
 .mo-wrap{max-width:var(--maxw);margin:0 auto;padding:var(--wrap-pad-y) var(--space-l)}
 .mo-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
-.mo-card:hover{box-shadow:0 12px 34px rgba(0,0,0,.14);transform:scale(1.02)}
+.mo-card:not(.mo-service):hover{box-shadow:0 12px 34px rgba(0,0,0,.14);transform:scale(1.02)}
 .mo-card-pad{padding:var(--space-m)}
 .mo-grid{display:grid;gap:var(--grid-gap)}
 .mo-grid-3{grid-template-columns:repeat(3,1fr)}
@@ -454,7 +454,7 @@ input, textarea, select, button { font: inherit; }
 @media (hover:hover) and (pointer:fine) {
   #services .mo-service:hover,
   #services .mo-service:focus-within{
-    transform: rotateZ(1deg);
+    transform: scale(1.02) rotateZ(1deg);
     background-color: var(--services-bg-hover);
     box-shadow: var(--services-shadow);
   }
