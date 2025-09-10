@@ -116,27 +116,6 @@ a{color:inherit;text-decoration:none}
   grid-template-columns:1fr 1fr;
   gap:var(--space-m);
 }
-.mo-input{
-  display:block;
-  width:100%;
-  padding:var(--space-s) 14px;
-  border:1px solid var(--line);
-  border-radius:var(--space-s);
-  background:#fff;
-  color:var(--ink);
-  outline:none;
-  transition:border-color .15s ease, box-shadow .15s ease, background-color .2s ease;
-  box-sizing:border-box;
-}
-.mo-input::placeholder{color:var(--muted)}
-.mo-input:focus-visible{
-  border-color:var(--accent);
-  box-shadow:0 0 0 3px color-mix(in oklab, var(--accent) 20%, transparent);
-  background:#fff;
-}
-textarea.mo-input{min-height:140px;resize:vertical}
-.mo-card .mo-input{margin-bottom:var(--space-s)}
-.mo-card button.mo-btn{margin-top:6px}
 
 #mo-ok {
   margin-top: 10px;

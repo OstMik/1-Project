@@ -83,22 +83,4 @@ document.addEventListener('DOMContentLoaded', () => {
       ro.observe(panel);
     });
   }
-  const contactForm = document.querySelector('#contact form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', moSendMail);
-  }
 });
-
-function moSendMail(e) {
-  e.preventDefault();
-  const nom   = document.getElementById('mo-nom').value.trim();
-  const mail  = document.getElementById('mo-email').value.trim();
-  const msg   = document.getElementById('mo-msg').value.trim();
-
-  const subject = encodeURIComponent(`Contact via site – ${nom}`);
-  const body    = encodeURIComponent('Nom: ' + nom + '\nEmail: ' + mail + '\n\n' + msg);
-  window.location.href = `mailto:contact@ostanin-rse.fr?subject=${subject}&body=${body}`;
-
-  const ok = document.getElementById('mo-ok');
-  if (ok) { ok.textContent = 'Votre client mail va s’ouvrir.'; ok.hidden = false; }
-}
