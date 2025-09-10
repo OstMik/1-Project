@@ -83,4 +83,27 @@ document.addEventListener('DOMContentLoaded', () => {
       ro.observe(panel);
     });
   }
+
+  /* ===== 4) Contact section hover effects ===== */
+  const contactContainer = document.getElementById('contact-container');
+  const contactItems = document.querySelectorAll('.contact-item');
+  if (contactContainer && contactItems.length && window.innerWidth >= 640) {
+    contactItems.forEach((item) => {
+      const bgColor = item.dataset.bgcolor;
+      const hoverBgColor = item.dataset.hoverbghexcolor;
+      const textColor = item.dataset.textcolor;
+
+      item.addEventListener('mouseover', () => {
+        document.documentElement.style.setProperty('--active-bg-color', hoverBgColor);
+        contactContainer.classList.remove('bg-neutral-100', 'text-neutral-800');
+        contactContainer.classList.add(bgColor, textColor);
+      });
+
+      item.addEventListener('mouseout', () => {
+        document.documentElement.style.setProperty('--active-bg-color', '#f8fafc');
+        contactContainer.classList.remove(bgColor, textColor);
+        contactContainer.classList.add('bg-neutral-100', 'text-neutral-800');
+      });
+    });
+  }
 });
