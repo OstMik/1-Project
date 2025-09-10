@@ -608,8 +608,6 @@ input, textarea, select, button { font: inherit; }
 
 /* Contact section */
 #contact {
-  padding: 4rem 0;
-  background-color: #f3f4f6;
   color: #1f2937;
   transition: all 0.3s ease;
 }
