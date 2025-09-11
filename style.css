@@ -415,7 +415,7 @@ input, textarea, select, button { font: inherit; }
   cursor: pointer;
   background-color: var(--services-bg);
   color: var(--services-color);
-  padding: 3rem 1.5rem;
+  padding: var(--space-l);
   border: 2px solid var(--services-border);
   border-radius: var(--radius);
   --tilt: 0deg; /* По умолчанию прямой */
