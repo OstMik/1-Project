@@ -316,8 +316,11 @@ a{color:inherit;text-decoration:none}
 
 /* Индивидуальные твики при желании (можно удалить/оставить) */
 #services.mo-section{ padding: clamp(24px, 5vw, 36px) 0; }
-#contact.mo-section{ padding: clamp(24px, 5vw, 36px) 0; }
-
+#contact.mo-section {
+  padding: clamp(24px, 5vw, 36px) 0; /* Как у Services */
+  color: #1f2937;
+  transition: all 0.3s ease;
+}
 /* На очень больших экранах не раздуваем слишком сильно */
 @media (min-width: 1400px){
   :root{
@@ -371,9 +374,6 @@ input, textarea, select, button { font: inherit; }
   line-height: 1.15;
   margin: 0 0 var(--space-s);
 }
-#services h2{
-  margin-bottom: var(--space-m);
-}
 
 /* 2) Заголовки карточек услуг */
 .mo-service h2{
@@ -392,7 +392,8 @@ input, textarea, select, button { font: inherit; }
 #services .mo-grid.mo-grid-3{
   display: flex;
   flex-wrap: wrap;
-  gap: var(--grid-gap);
+  column-gap: var(--grid-gap);
+  row-gap: var(--space-l);
   align-items: flex-start;   /* не растягивать карточки по высоте строки */
   justify-content: center;   /* центрируем ряды */
 }
@@ -617,7 +618,7 @@ input, textarea, select, button { font: inherit; }
 }
 
 .contact-container {
-  padding: var(--space-s) 0;
+  padding: 0; /* Убираем отступы, чтобы .mo-wrap управлял ими */
   max-width: var(--maxw);
   margin: 0 auto;
 }
@@ -640,7 +641,7 @@ input, textarea, select, button { font: inherit; }
   }
 }
 
-.contact-title h3 {
+.contact-title h2 {
   margin-bottom: var(--space-s);
 }
 
@@ -696,7 +697,49 @@ input, textarea, select, button { font: inherit; }
   transform: rotate(45deg);
 }
 
+/* Изменено: убираем добавление отступов на мобильных, чтобы соответствовать другим секциям */
 @media (max-width: 640px) {
-  .contact-container { padding: var(--space-m) 0; }
-  .contact-link { padding: var(--space-s) var(--space-m); border-radius: var(--radius); }
+  .contact-container { padding: 0; } /* Было: padding: var(--space-m); — убрали отступы */
+  .contact-link { 
+    padding: var(--space-s) var(--space-m); /* Оставляем отступы для ссылок, если нужно; или убрать, если хотите компактнее */
+    border-radius: var(--radius);
+  }
+}
+/* Супер-простая верстка контактов */
+.mo-contact-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  border-top:1px solid #e5e7eb;
+}
+.mo-contact-list li{
+  border-bottom:1px solid #e5e7eb;
+}
+
+.mo-contact-link{
+  display:flex;
+  align-items:center;
+  gap:var(--space-m);
+  padding:12px 0;                 /* без горизонтальных паддингов — край ровно как у .mo-wrap */
+  color:#1f2937;
+  text-decoration:none;
+  transition:background-color .2s ease, color .2s ease;
+}
+.mo-contact-link .label{flex:0 0 auto; font-weight:600;}
+.mo-contact-link .value{flex:1 1 auto; color:#4b5563;}
+.mo-contact-link .arrow{flex:0 0 auto; margin-left:auto; transition:transform .2s ease;}
+
+.mo-contact-link:hover{ background:#f0fdf4; }        /* мягкий зелёный hover */
+.mo-contact-link:hover .arrow{ transform:rotate(45deg); }
+
+/* Фокус для клавиатуры */
+.mo-contact-link:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px #fff, 0 0 0 4px var(--accent);
+  border-radius:8px;
+}
+
+/* Адаптив: на узких можно чуть уплотнить вертикали */
+@media (max-width:640px){
+  .mo-contact-link{ padding:10px 0; }
 }
